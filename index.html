@@ -1,0 +1,1072 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>THE GAMERS — Proposta Comercial 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=VT323&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://use.typekit.net/gcoljzf.css">
+<style>
+
+/* ═══════════════════════════════════════════
+   TOKENS + RESET
+═══════════════════════════════════════════ */
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box }
+html { scroll-behavior: smooth; }
+
+:root {
+  --bg:      #050505;
+  --bg2:     #0b0b0c;
+  --panel:   rgba(255,255,255,.045);
+  --line:    rgba(255,255,255,.12);
+  --white:   #ffffff;
+  --dim:     rgba(255,255,255,.90);
+  --dim2:    rgba(255,255,255,.64);
+  --dim3:    rgba(255,255,255,.32);
+  --cyan:    #ffffff;
+  --cyan2:   #d9d9d9;
+  --cyandim: rgba(255,255,255,.28);
+  --green:   #3ddc84;
+  --amber:   #ffb454;
+  --bronze:  #c9803f;
+  --silver:  #c9cfd8;
+  --gold:    #e8b93c;
+  --font:  "acumin-variable", Arial, sans-serif;
+  --label: "acumin-variable", Arial, sans-serif;
+  --head:  'Anton', Arial, sans-serif;
+  --mono:  'VT323', monospace;
+
+  --wght-thin:     100;
+  --wght-regular:  300;
+  --wght-medium:   194.2857;
+  --wght-semibold: 500;
+  --wght-bold:     700;
+  --wght-black:    900;
+}
+
+body {
+  background: var(--bg);
+  color: var(--white);
+  font-family: var(--font);
+  font-variation-settings: 'wght' var(--wght-regular), 'wdth' 100, 'slnt' 0;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+::selection { background: #fff; color:#000; }
+
+/* colored accent text (static, brand white highlight) */
+.shine { color: var(--cyan); }
+
+/* ═══════════════════════════════════════════
+   PAPER-FOLD corner (cut-paper motif)
+═══════════════════════════════════════════ */
+.paper-fold { position:absolute; width:130px; height:130px; z-index:1; pointer-events:none; }
+.paper-fold.tr { top:0; right:0; }
+.paper-fold.tr::before {
+  content:''; position:absolute; inset:0;
+  background: linear-gradient(135deg, rgba(255,255,255,.96), rgba(255,255,255,.6));
+  clip-path: polygon(100% 0, 100% 100%, 0 0);
+  filter: drop-shadow(-6px 6px 16px rgba(0,0,0,.5));
+}
+.paper-fold.bl { bottom:0; left:0; }
+.paper-fold.bl::before {
+  content:''; position:absolute; inset:0;
+  background: linear-gradient(-45deg, rgba(255,255,255,.96), rgba(255,255,255,.6));
+  clip-path: polygon(0 100%, 0 0, 100% 100%);
+  filter: drop-shadow(6px -6px 16px rgba(0,0,0,.5));
+}
+
+/* ═══════════════════════════════════════════
+   ICONS — monochrome line icons in a glass box
+═══════════════════════════════════════════ */
+.ic { fill:none; stroke:#fff; stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round; width:22px; height:22px; display:block; }
+.icon-box {
+  display:inline-flex; align-items:center; justify-content:center; flex-shrink:0;
+  width:44px; height:44px; border-radius:14px;
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.18);
+  backdrop-filter: blur(14px) saturate(160%);
+  -webkit-backdrop-filter: blur(14px) saturate(160%);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.12), 0 8px 18px rgba(0,0,0,.4);
+}
+.icon-box.sm { width:30px; height:30px; border-radius:10px; }
+.icon-box.sm .ic { width:15px; height:15px; }
+.icon-box.cyan { border-color: rgba(255,255,255,.4); box-shadow: inset 0 1px 0 rgba(255,255,255,.15), 0 0 18px rgba(255,255,255,.14), 0 8px 18px rgba(0,0,0,.4); }
+.icon-box.cyan .ic { stroke: var(--cyan); }
+.icon-box.green .ic { stroke: var(--green); } .icon-box.green { border-color: rgba(61,220,132,.4); }
+.icon-box.amber .ic { stroke: var(--amber); } .icon-box.amber { border-color: rgba(255,180,84,.4); }
+
+.chip-row { display:flex; flex-wrap:wrap; gap:12px; margin-top:26px; }
+.chip {
+  display:inline-flex; align-items:center; gap:12px; padding:8px 20px 8px 8px;
+  border-radius:999px; background: rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.16);
+  backdrop-filter: blur(16px) saturate(180%); -webkit-backdrop-filter: blur(16px) saturate(180%);
+}
+.chip span { font-family: var(--label); font-weight:700; font-variation-settings: 'wght' var(--wght-medium), 'wdth' 100, 'slnt' 0; font-size:14px; color: var(--dim); letter-spacing:.01em; white-space:nowrap; }
+
+.stat-chip-row { display:flex; flex-wrap:wrap; gap:12px; margin-top:32px; padding-top:26px; border-top:1px solid var(--line); }
+.stat-chip {
+  display:inline-flex; align-items:center; gap:14px; padding:10px 22px 10px 10px;
+  border-radius:999px; background: rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.16);
+  backdrop-filter: blur(16px) saturate(180%); -webkit-backdrop-filter: blur(16px) saturate(180%);
+}
+.stat-chip b { color:var(--cyan); font-family:var(--mono); font-size:22px; }
+.stat-chip span { font-size:14px; color:var(--dim2); font-family: var(--font); font-variation-settings: 'wght' var(--wght-medium), 'wdth' 100, 'slnt' 0; }
+
+/* ═══════════════════════════════════════════
+   PROGRESS BAR
+═══════════════════════════════════════════ */
+#prog { position:fixed; top:0; left:0; right:0; height:3px; z-index:9999; background:#000; }
+#prog-bar {
+  height:100%; width:0;
+  background: linear-gradient(90deg, #8a8a8a, var(--cyan), var(--cyan2));
+  box-shadow:0 0 10px rgba(255,255,255,.4);
+  transition:width .08s linear;
+}
+
+/* ═══════════════════════════════════════════
+   NAV — glass HUD bar
+═══════════════════════════════════════════ */
+#nav-wrapper { position:fixed; top:20px; left:50%; transform:translateX(-50%); z-index:9001; display:flex; align-items:center; gap:14px; }
+#site-logo-btn { opacity:.92; transition:opacity .2s; display:flex; align-items:center; flex-shrink:0; }
+#site-logo-btn:hover { opacity:1 }
+#site-logo-btn img { height:24px; display:block; filter: drop-shadow(0 2px 8px rgba(0,0,0,.7)); }
+
+nav {
+  position:relative; z-index:0; height:44px; display:flex; align-items:center; padding:0 4px;
+  background: rgba(20,20,22,.55);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid rgba(255,255,255,.16);
+  border-radius: 999px;
+  overflow:hidden; white-space:nowrap;
+  box-shadow: 0 10px 30px rgba(0,0,0,.4), inset 0 1px 0 rgba(255,255,255,.08);
+}
+.nav-blob {
+  position:absolute; width:150px; height:150px; border-radius:50%;
+  background: radial-gradient(circle, rgba(255,255,255,.26) 0%, rgba(255,255,255,.08) 40%, transparent 68%);
+  pointer-events:none; left:50%; top:50%; transform:translate(-50%,-50%);
+  filter: blur(14px); opacity:0; transition: opacity .38s ease; z-index:0;
+}
+.nav-links { display:flex; list-style:none; gap:0; position:relative; z-index:1 }
+.nav-links a {
+  font-family: var(--label); font-weight:800; font-variation-settings: 'wght' var(--wght-medium), 'wdth' 100, 'slnt' 0; font-size:11px; letter-spacing:.05em; text-transform:uppercase;
+  color: rgba(255,255,255,.55); text-decoration:none; padding:12px 14px; border-radius:999px; transition: color .2s; white-space:nowrap; line-height:1;
+}
+.nav-links a:hover { color:#fff }
+.nav-links a.on { color:#000; background: var(--cyan); }
+
+#stage-readout {
+  font-family: var(--mono); font-size:17px; letter-spacing:.12em; color: var(--cyan);
+  border: 1px solid rgba(255,255,255,.18); border-radius:999px; padding:6px 14px; background: rgba(20,20,22,.55);
+  backdrop-filter: blur(24px); white-space:nowrap;
+}
+
+/* ═══════════════════════════════════════════
+   STAGE RAIL
+═══════════════════════════════════════════ */
+#counter { position:fixed; right:24px; top:50%; transform:translateY(-50%); z-index:8000; display:flex; flex-direction:column; gap:10px; }
+.counter-dot { width:6px; height:6px; border-radius:50%; background: rgba(255,255,255,.18); transition:.25s; cursor:pointer; }
+.counter-dot.on { background: var(--cyan); box-shadow:0 0 8px rgba(255,255,255,.6); height:22px; border-radius:3px; }
+
+/* ═══════════════════════════════════════════
+   SCROLL REVEAL
+═══════════════════════════════════════════ */
+[data-r] { opacity:0; transform: translateY(26px); transition: opacity 1s cubic-bezier(.16,1,.3,1), transform 1s cubic-bezier(.16,1,.3,1); transition-delay:.3s; }
+[data-r].vis { opacity:1; transform:none }
+[data-d="1"]{transition-delay:.42s}[data-d="2"]{transition-delay:.54s}
+[data-d="3"]{transition-delay:.66s}[data-d="4"]{transition-delay:.78s}
+[data-d="5"]{transition-delay:.9s}[data-d="6"]{transition-delay:1.02s}
+
+/* ═══════════════════════════════════════════
+   SECTION SHELL
+═══════════════════════════════════════════ */
+section {
+  min-height: 100vh;
+  position: relative;
+  padding: 130px 0 90px;
+  display:flex; align-items:center;
+  border-top: 1px solid var(--line);
+  overflow:hidden;
+}
+.bg-full { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center; z-index:0; }
+.bg-overlay { position:absolute; inset:0; z-index:1; }
+.bg-overlay.l { background: linear-gradient(90deg, rgba(5,5,5,.97) 0%, rgba(5,5,5,.90) 38%, rgba(5,5,5,.62) 62%, rgba(5,5,5,.25) 88%); }
+.bg-overlay.r { background: linear-gradient(270deg, rgba(5,5,5,.97) 0%, rgba(5,5,5,.90) 38%, rgba(5,5,5,.62) 62%, rgba(5,5,5,.25) 88%); }
+.bg-overlay.full { background: rgba(5,5,5,.86); }
+#hero .bg-overlay.full { background: rgba(5,5,5,.6); }
+
+/* flush side image panel — no dimming, full height, glued to one edge */
+.side-panel-img { position:absolute; top:0; bottom:0; width:42%; height:100%; object-fit:cover; z-index:0; }
+.side-panel-img.right { right:0; }
+.side-panel-img.left { left:0; }
+@media (max-width: 960px) { .side-panel-img { display:none; } }
+
+.sec-wrap { position:relative; z-index:2; max-width:1240px; margin:0 auto; padding:0 80px; width:100%; }
+
+.txt-col { max-width: 560px; }
+.txt-col.right { margin-left:auto; }
+.txt-col.center { margin:0 auto; text-align:center; }
+.block-left { max-width:840px; margin-right:auto; }
+.block-right { max-width:900px; margin-left:auto; }
+
+.eyebrow { font-family: var(--label); font-weight:800; font-variation-settings: 'wght' var(--wght-medium), 'wdth' 100, 'slnt' 0; font-size:13px; letter-spacing:.16em; text-transform:uppercase; color: var(--cyan); margin-bottom:18px; display:block; }
+.eyebrow::before { content:'▸ '; }
+
+.rule { width:48px; height:3px; background: var(--cyan); margin: 22px 0; }
+.rule-check {
+  width:76px; height:8px; margin:20px 0; background-color:#000;
+  background-image: linear-gradient(45deg, var(--cyan) 25%, transparent 25%, transparent 75%, var(--cyan) 75%), linear-gradient(45deg, var(--cyan) 25%, transparent 25%, transparent 75%, var(--cyan) 75%);
+  background-size:8px 8px; background-position:0 0,4px 4px;
+}
+
+h2.head-h {
+  font-family: var(--head);
+  font-size: clamp(34px, 4.8vw, 62px);
+  line-height: 1.1;
+  letter-spacing: .005em;
+  text-transform: uppercase;
+  color: #fff;
+  margin-bottom: 22px;
+  transform: skewX(-7deg);
+  display: inline-block;
+}
+.sub-line { font-family: var(--font); font-variation-settings: 'wght' var(--wght-semibold), 'wdth' 100, 'slnt' 0; font-size:18px; color:var(--dim2); line-height:1.7; margin-bottom:26px; max-width:560px; }
+.body-txt { font-size:17px; line-height:1.9; color:var(--dim); max-width:500px; margin-bottom:10px; }
+.body-txt strong { color:#fff; font-weight:700; font-variation-settings: 'wght' var(--wght-semibold), 'wdth' 100, 'slnt' 0; }
+.center .sub-line, .center .body-txt { margin-left:auto; margin-right:auto; }
+
+.split { display:grid; grid-template-columns: 1.05fr .95fr; gap:64px; align-items:start; width:100%; }
+
+/* ═══════════════════════════════════════════
+   GLASS CARD (Apple-style rounded panel)
+═══════════════════════════════════════════ */
+.glass-card {
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.15);
+  border-radius: 22px;
+  padding: 26px 24px;
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.1), 0 14px 34px rgba(0,0,0,.4);
+  transition: transform .2s, border-color .2s, background .2s;
+}
+.glass-card:hover { transform: translateY(-4px); border-color: rgba(255,255,255,.4); background: rgba(255,255,255,.07); }
+.glass-card-head { display:flex; align-items:center; gap:14px; margin-bottom:16px; }
+.glass-card-title { font-family: var(--font); font-weight:700; font-variation-settings: 'wght' var(--wght-semibold), 'wdth' 100, 'slnt' 0; font-size:17.5px; color:#fff; }
+.glass-card-body { font-size:14.5px; color:var(--dim2); line-height:1.8; }
+
+/* ═══════════════════════════════════════════
+   ① HERO
+═══════════════════════════════════════════ */
+#hero { min-height:100vh; padding:0; border-top:none; flex-direction:column; justify-content:center; overflow:hidden; }
+.hero-center { position:relative; z-index:1; display:flex; flex-direction:column; align-items:center; text-align:center; width:100%; }
+.hero-glow { position:absolute; width:640px; height:640px; border-radius:50%; background: radial-gradient(circle, rgba(255,255,255,.09) 0%, transparent 68%); top:50%; left:50%; transform:translate(-50%,-50%); pointer-events:none; }
+.hero-logo { width: clamp(340px, 40vw, 560px); height:auto; display:block; filter: drop-shadow(0 6px 40px rgba(0,0,0,.6)); position:relative; z-index:1; }
+.hero-tag { font-family: var(--font); font-weight:400; font-variation-settings: 'wght' var(--wght-semibold), 'wdth' 100, 'slnt' 0; font-size:22px; color: var(--dim); letter-spacing:.02em; margin-top:26px; }
+.hero-sub { font-family: var(--head); font-size: clamp(15px,1.8vw,20px); color: var(--cyan); letter-spacing:.14em; margin-top:46px; }
+.hero-sub2 { font-family: var(--label); font-weight:700; font-variation-settings: 'wght' var(--wght-medium), 'wdth' 100, 'slnt' 0; font-size:14px; color: var(--dim3); letter-spacing:.3em; margin-top:10px; }
+.scroll-cue { position:absolute; bottom:36px; left:50%; transform:translateX(-50%); font-family: var(--label); font-weight:700; font-variation-settings: 'wght' var(--wght-medium), 'wdth' 100, 'slnt' 0; font-size:12px; letter-spacing:.2em; color:var(--dim2); text-transform:uppercase; animation: blink 1.6s steps(2) infinite; }
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:.25} }
+
+/* ═══════════════════════════════════════════
+   TELEMETRY (números)
+═══════════════════════════════════════════ */
+.hstat-row { display:flex; flex-direction:column; gap:0; margin-top: 8px; }
+.hstat { display:flex; align-items:baseline; gap:22px; padding:20px 0; border-bottom:1px solid var(--line); }
+.hstat:first-child { border-top:1px solid var(--line) }
+.hstat-num { font-family: var(--mono); font-size: clamp(44px,5.6vw,64px); line-height:1; flex-shrink:0; min-width:180px; }
+.hstat-lbl { font-size:16px; color:var(--dim); line-height:1.5; }
+
+/* ═══════════════════════════════════════════
+   MODAL
+═══════════════════════════════════════════ */
+.modal-backdrop { position:fixed; inset:0; z-index:9500; display:flex; align-items:center; justify-content:center; background: rgba(0,0,0,.86); backdrop-filter: blur(10px); opacity:0; pointer-events:none; transition: opacity .25s; padding:30px; }
+.modal-backdrop.open { opacity:1; pointer-events:all; }
+.modal-panel { background: rgba(18,18,20,.92); border:1px solid rgba(255,255,255,.16); border-radius:26px; max-width:760px; width:100%; max-height:84vh; overflow-y:auto; padding:44px 40px; position:relative; backdrop-filter: blur(30px); box-shadow: 0 30px 80px rgba(0,0,0,.6), inset 0 1px 0 rgba(255,255,255,.1); }
+.modal-close { position:absolute; top:16px; right:16px; width:36px; height:36px; border-radius:50%; border:1px solid rgba(255,255,255,.25); background: rgba(255,255,255,.08); color:#fff; font-family: var(--label); font-weight:800; font-variation-settings: 'wght' var(--wght-medium), 'wdth' 100, 'slnt' 0; font-size:14px; cursor:pointer; transition: background .2s, color .2s; }
+.modal-close:hover { background:#fff; color:#000; }
+.modal-title { font-family: var(--head); font-size: clamp(24px,3vw,32px); color:#fff; margin-bottom:8px; letter-spacing:.01em; }
+.modal-sub { font-size:13px; color:var(--dim3); margin-bottom:28px; font-family:var(--label); font-weight:700; font-variation-settings: 'wght' var(--wght-medium), 'wdth' 100, 'slnt' 0; letter-spacing:.1em; text-transform:uppercase; }
+.modal-row { display:flex; align-items:baseline; gap:24px; padding:18px 0; border-bottom:1px solid var(--line); }
+.modal-row:first-of-type { border-top:1px solid var(--line) }
+.modal-num { font-family: var(--mono); font-size: clamp(38px,4.4vw,52px); min-width:160px; flex-shrink:0; }
+.modal-desc { font-size:15px; color:var(--dim); }
+.modal-meta { font-family:var(--label); font-weight:700; font-variation-settings: 'wght' var(--wght-medium), 'wdth' 100, 'slnt' 0; font-size:11px; color:var(--dim3); letter-spacing:.08em; text-transform:uppercase; display:block; margin-top:3px; }
+
+/* ═══════════════════════════════════════════
+   PORTFÓLIO — única seção com fotos
+═══════════════════════════════════════════ */
+.port-grid { display:grid; grid-template-columns: repeat(5, 1fr); gap:14px; }
+.port-card { background: var(--panel); border:1px solid rgba(255,255,255,.16); border-radius:20px; overflow:hidden; transition: transform .2s, border-color .2s; display:flex; flex-direction:column; backdrop-filter: blur(16px); }
+.port-card:hover { transform: translateY(-6px); border-color: rgba(255,255,255,.4); }
+.art-slot { position:relative; width:100%; aspect-ratio:1/1; background: repeating-conic-gradient(rgba(255,255,255,.05) 0% 25%, rgba(255,255,255,.015) 0% 50%) 0 0/24px 24px, var(--bg2); border-bottom:1px solid rgba(255,255,255,.16); overflow:hidden; display:flex; align-items:center; justify-content:center; }
+.art-slot img { width:100%; height:100%; object-fit:cover; display:block; }
+.art-slot .art-label { position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; text-align:center; padding:14px; }
+.art-slot.filled .art-label { display:none }
+.art-slot .art-label span { font-family: var(--label); font-variation-settings: 'wght' var(--wght-medium), 'wdth' 100, 'slnt' 0; font-size:11px; letter-spacing:.02em; color: var(--dim3); }
+.port-card-body { padding:14px 14px 18px; flex:1; display:flex; flex-direction:column; }
+.port-game { font-family: var(--label); font-weight:800; font-variation-settings: 'wght' var(--wght-medium), 'wdth' 100, 'slnt' 0; font-size:12px; color:var(--cyan); letter-spacing:.08em; text-transform:uppercase; margin-bottom:6px; }
+.port-game-sm { font-family: var(--label); font-weight:700; font-variation-settings: 'wght' var(--wght-medium), 'wdth' 100, 'slnt' 0; font-size:10px; color:var(--cyan); letter-spacing:.03em; text-transform:uppercase; margin-bottom:6px; }
+.port-name { font-family: var(--font); font-weight:700; font-variation-settings: 'wght' var(--wght-semibold), 'wdth' 100, 'slnt' 0; font-size:17px; margin-bottom:6px; }
+.port-desc { font-size:12.5px; color:var(--dim2); line-height:1.65; flex:1; }
+.port-status { margin-top:12px; align-self:flex-start; display:inline-flex; align-items:center; gap:8px; font-family: var(--label); font-weight:700; font-variation-settings: 'wght' var(--wght-medium), 'wdth' 100, 'slnt' 0; font-size:12px; letter-spacing:.02em; padding:5px 14px 5px 5px; border-radius:999px; border:1px solid; background: rgba(255,255,255,.04); }
+.port-status.launched { border-color: rgba(61,220,132,.4); color: var(--green); }
+.port-status.launched .ic { stroke: var(--green); }
+.port-status.soon { border-color: rgba(255,255,255,.4); color: var(--cyan); }
+.port-status.soon .ic { stroke: var(--cyan); }
+.port-status.editing { border-color: rgba(255,180,84,.4); color: var(--amber); }
+.port-status.editing .ic { stroke: var(--amber); }
+
+/* ═══════════════════════════════════════════
+   MERCADO stat box
+═══════════════════════════════════════════ */
+.market-box { border:1px solid rgba(255,255,255,.16); background: var(--panel); border-radius:24px; padding:28px 30px; backdrop-filter: blur(20px); }
+.market-title { font-family: var(--head); font-size:17px; color:var(--cyan); letter-spacing:.02em; margin-bottom:20px; text-transform:uppercase; }
+.market-row { display:flex; justify-content:space-between; align-items:baseline; padding:13px 0; border-bottom:1px solid var(--line); gap:20px; }
+.market-row:first-of-type { border-top:1px solid var(--line) }
+.market-val { font-family: var(--mono); font-size:28px; color:#fff; flex-shrink:0; }
+.market-lbl { font-size:13.5px; color:var(--dim2); text-align:right; }
+
+/* ═══════════════════════════════════════════
+   CINEMARK
+═══════════════════════════════════════════ */
+.cinemark-stat { margin-top:32px; display:flex; align-items:baseline; gap:20px; }
+.cinemark-stat .num { font-family:var(--mono); font-size: clamp(56px,7.4vw,92px); color:var(--cyan); text-shadow:0 0 30px rgba(255,255,255,.3); line-height:1; }
+
+/* ═══════════════════════════════════════════
+   GRIDS (desafio / solução)
+═══════════════════════════════════════════ */
+.grid-2 { display:grid; grid-template-columns:repeat(2,1fr); gap:16px; margin-top:8px; }
+.grid-3 { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:8px; }
+
+.callout {
+  margin-top:26px; display:flex; align-items:center; gap:18px; padding:20px 28px;
+  border:1px solid rgba(255,255,255,.28); border-radius:20px; background: rgba(255,255,255,.05);
+  backdrop-filter: blur(16px);
+  font-size:15.5px; color:var(--dim); line-height:1.7;
+}
+.callout b { color: var(--cyan); }
+
+/* ═══════════════════════════════════════════
+   PATROCÍNIO
+═══════════════════════════════════════════ */
+.tier-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; align-items:stretch; margin-top:36px; }
+.tier-card { border:1px solid var(--line); background: var(--panel); border-radius:24px; padding:30px 26px; display:flex; flex-direction:column; position:relative; transition: transform .2s, border-color .2s; backdrop-filter: blur(20px); }
+.tier-card:hover { transform: translateY(-6px); }
+.tier-card.bronze { border-color: rgba(201,128,63,.5) } .tier-card.bronze:hover { border-color: var(--bronze) }
+.tier-card.prata { border-color: rgba(201,207,216,.5) } .tier-card.prata:hover { border-color: var(--silver) }
+.tier-card.gold { border-color: var(--gold); background: rgba(232,185,60,.06); }
+.tier-ribbon { position:absolute; top:16px; left:50%; transform:translateX(-50%); background: var(--gold); color:#000; font-family:var(--label); font-weight:800; font-variation-settings: 'wght' var(--wght-medium), 'wdth' 100, 'slnt' 0; font-size:10px; letter-spacing:.04em; padding:8px 16px; white-space:nowrap; text-transform:uppercase; border-radius:999px; display:flex; align-items:center; gap:8px; box-shadow:0 8px 20px rgba(0,0,0,.35); }
+.tier-ribbon .ic { stroke:#000; width:12px; height:12px }
+.tier-medal { margin-bottom:14px; }
+.tier-name { font-family: var(--head); font-size:20px; letter-spacing:.02em; margin-bottom:10px; }
+.tier-card.bronze .tier-name { color: var(--bronze) } .tier-card.prata .tier-name { color: var(--silver) } .tier-card.gold .tier-name { color: var(--gold) }
+.tier-price { font-family: var(--mono); font-size:26px; color:#fff; margin-bottom:20px; }
+.tier-list { list-style:none; display:flex; flex-direction:column; gap:12px; flex:1; }
+.tier-list li { font-size:14px; color:var(--dim2); line-height:1.55; padding-left:18px; position:relative; }
+.tier-list li::before { content:'▪'; position:absolute; left:0; color:var(--cyan); }
+
+/* ═══════════════════════════════════════════
+   TABLE
+═══════════════════════════════════════════ */
+.comp-table-wrap { border-radius:22px; overflow:hidden; border:1px solid var(--line); margin-top:30px; backdrop-filter: blur(16px); }
+.comp-table { width:100%; border-collapse:collapse; }
+.comp-table th, .comp-table td { padding:14px 16px; border:1px solid var(--line); font-size:14px; text-align:center; }
+.comp-table th { font-family: var(--head); font-size:14px; letter-spacing:.02em; text-transform:uppercase; background: var(--bg2); color:var(--dim2); }
+.comp-table th span.th-ic { display:inline-flex; align-items:center; gap:6px; }
+.comp-table th .ic { width:14px; height:14px; }
+.comp-table th:first-child, .comp-table td:first-child { text-align:left; color:var(--dim); font-weight:600; }
+.comp-table th.cyan-h { color:#000; background: var(--cyan); }
+.comp-table th.cyan-h .ic { stroke:#000; }
+.comp-table td.cyan-c { color: var(--cyan); font-weight:700; }
+.comp-table tbody tr:nth-child(even) { background: rgba(255,255,255,.025); }
+
+/* ═══════════════════════════════════════════
+   ONBOARDING
+═══════════════════════════════════════════ */
+.timeline { display:grid; grid-template-columns:repeat(6,1fr); gap:14px; margin-top:36px; }
+.tl-step { background: var(--panel); border:1px solid var(--line); border-radius:20px; padding:24px 18px; transition: border-color .2s, transform .2s; backdrop-filter: blur(16px); }
+.tl-step:hover { border-color: rgba(255,255,255,.35); transform: translateY(-4px); }
+.tl-phase { font-family: var(--label); font-weight:700; font-variation-settings: 'wght' var(--wght-medium), 'wdth' 100, 'slnt' 0; font-size:12px; color:var(--cyan); letter-spacing:.08em; margin: 14px 0 4px; }
+.tl-name { font-weight:700; font-size:15px; margin-bottom:8px; }
+.tl-body { font-size:12.5px; color:var(--dim2); line-height:1.65; }
+
+/* ═══════════════════════════════════════════
+   BUTTON — glass pill (Apple-style)
+═══════════════════════════════════════════ */
+.btn-pixel {
+  display:inline-flex; align-items:center; gap:10px;
+  font-family: var(--label); font-weight:800; font-variation-settings: 'wght' var(--wght-black), 'wdth' 100, 'slnt' 0; font-size:13px; letter-spacing:.04em;
+  text-transform:uppercase; color:#000; background: rgba(255,255,255,.94);
+  padding:16px 28px; border-radius:999px; text-decoration:none; border:none; cursor:pointer;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 12px 28px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.5);
+  transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+}
+.btn-pixel:hover { transform: translateY(-2px); background:#fff; box-shadow: 0 16px 34px rgba(0,0,0,.4), inset 0 1px 0 rgba(255,255,255,.6); }
+.btn-pixel:active { transform: translateY(0); }
+.btn-pixel .ic { stroke:#000; width:16px; height:16px }
+.btn-sm { font-size:12px; padding:14px 22px; margin-top:8px; }
+
+/* ═══════════════════════════════════════════
+   VIP panel
+═══════════════════════════════════════════ */
+.vip-panel { border:1px solid rgba(255,255,255,.25); background: rgba(255,255,255,.05); border-radius:26px; padding:32px 28px; backdrop-filter: blur(20px); }
+.vip-title { font-family: var(--head); font-size:18px; text-align:center; color:var(--cyan); letter-spacing:.03em; margin:16px 0 24px; }
+.vip-star { display:flex; justify-content:center; }
+.vip-list { list-style:none; display:flex; flex-direction:column; gap:16px; }
+.vip-list li { font-size:15px; color:var(--dim); display:flex; gap:12px; align-items:center; }
+
+.contact-list { display:flex; flex-direction:column; gap:0; margin-top:28px; }
+.contact-item { display:flex; align-items:baseline; gap:18px; padding:15px 0; border-bottom:1px solid var(--line); }
+.contact-item:first-child { border-top:1px solid var(--line) }
+.contact-lbl { font-family: var(--label); font-weight:800; font-variation-settings: 'wght' var(--wght-medium), 'wdth' 100, 'slnt' 0; font-size:12px; letter-spacing:.1em; color:var(--cyan); text-transform:uppercase; min-width:88px; }
+.contact-val { font-size:16px; color:var(--dim); }
+
+/* ═══════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════ */
+footer { background: var(--bg); padding:50px 80px 30px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:20px; }
+.foot-logo { height:24px; display:block; }
+.foot-meta { font-family: var(--label); font-weight:700; font-variation-settings: 'wght' var(--wght-medium), 'wdth' 100, 'slnt' 0; font-size:12px; color:var(--dim3); text-align:right; line-height:1.9; letter-spacing:.04em; text-transform:uppercase; }
+.foot-bottom { text-align:center; padding:20px 24px 34px; font-family: var(--label); font-weight:700; font-variation-settings: 'wght' var(--wght-medium), 'wdth' 100, 'slnt' 0; font-size:11px; color:var(--dim3); letter-spacing:.08em; text-transform:uppercase; }
+
+/* ═══════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════ */
+@media (max-width: 960px) {
+  #nav-wrapper { top:10px; }
+  .nav-links a { font-size:8px; padding:10px 8px }
+  #stage-readout { font-size:12px; padding:6px 9px }
+  #counter { display:none }
+  .sec-wrap { padding:0 24px }
+  section { padding:110px 0 60px }
+  .split { grid-template-columns:1fr; gap:32px; }
+  .txt-col, .txt-col.right, .block-left, .block-right { max-width:100%; margin-left:0; margin-right:0; }
+  .port-grid { grid-template-columns:repeat(2,1fr) }
+  .grid-2, .grid-3, .tier-grid { grid-template-columns:1fr }
+  .timeline { grid-template-columns:repeat(2,1fr) }
+  .comp-table { font-size:11px }
+  .comp-table th, .comp-table td { padding:8px 6px }
+  footer { flex-direction:column; text-align:center }
+  .foot-meta { text-align:center }
+  .hstat { flex-direction:column; gap:6px }
+  .modal-row { flex-direction:column; gap:4px }
+}
+
+</style>
+</head>
+<body>
+
+<!-- ICON SPRITE — monochrome line icons -->
+<svg style="display:none" aria-hidden="true">
+  <symbol id="ic-film" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><line x1="7" y1="5" x2="7" y2="19"/><line x1="17" y1="5" x2="17" y2="19"/><line x1="3" y1="10" x2="7" y2="10"/><line x1="3" y1="14" x2="7" y2="14"/><line x1="17" y1="10" x2="21" y2="10"/><line x1="17" y1="14" x2="21" y2="14"/></symbol>
+  <symbol id="ic-trophy" viewBox="0 0 24 24"><path d="M8 21h8"/><path d="M12 17v4"/><path d="M7 4h10v4a5 5 0 0 1-10 0V4z"/><path d="M7 5H4a3 3 0 0 0 3 5"/><path d="M17 5h3a3 3 0 0 1-3 5"/></symbol>
+  <symbol id="ic-ticket" viewBox="0 0 24 24"><path d="M3 8a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v2a2 2 0 0 0 0 4v2a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-2a2 2 0 0 0 0-4V8z"/><line x1="10" y1="6" x2="10" y2="18" stroke-dasharray="2 2"/></symbol>
+  <symbol id="ic-link" viewBox="0 0 24 24"><path d="M9 15l6-6"/><path d="M13 5l1.5-1.5a4 4 0 1 1 5.6 5.7L18.5 10.6"/><path d="M11 19l-1.5 1.5a4 4 0 1 1-5.6-5.7L5.5 13.4"/></symbol>
+  <symbol id="ic-camera" viewBox="0 0 24 24"><path d="M4 8a2 2 0 0 1 2-2h1l1.5-2h7L17 6h1a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8z"/><circle cx="12" cy="13" r="3.3"/></symbol>
+  <symbol id="ic-chat" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 1 4 7.5L3 21l1.6-4.3A8.96 8.96 0 0 1 3 12z"/></symbol>
+  <symbol id="ic-play" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M10 8.5l6 3.5-6 3.5v-7z"/></symbol>
+  <symbol id="ic-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3 20a6 6 0 0 1 12 0"/><circle cx="17.5" cy="9" r="2.4"/><path d="M15 20a5 5 0 0 1 6-4.9"/></symbol>
+  <symbol id="ic-block" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><line x1="5.5" y1="5.5" x2="18.5" y2="18.5"/></symbol>
+  <symbol id="ic-bot" viewBox="0 0 24 24"><rect x="4" y="9" width="16" height="10" rx="3"/><line x1="12" y1="5" x2="12" y2="9"/><circle cx="12" cy="4" r="1.2"/><circle cx="9" cy="14" r="1.2"/><circle cx="15" cy="14" r="1.2"/></symbol>
+  <symbol id="ic-trend-down" viewBox="0 0 24 24"><path d="M3 6l6 6 4-4 8 8"/><path d="M21 20h-5v-5"/></symbol>
+  <symbol id="ic-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5.2"/><circle cx="12" cy="12" r="1.3"/></symbol>
+  <symbol id="ic-bulb" viewBox="0 0 24 24"><path d="M9 18h6"/><path d="M10 21h4"/><path d="M12 3a6 6 0 0 0-3.6 10.8c.6.5 1.1 1.3 1.1 2.2h5a3 3 0 0 1 1.1-2.2A6 6 0 0 0 12 3z"/></symbol>
+  <symbol id="ic-heart" viewBox="0 0 24 24"><path d="M12 20s-7-4.4-9.5-9A5.5 5.5 0 0 1 12 6a5.5 5.5 0 0 1 9.5 5c-2.5 4.6-9.5 9-9.5 9z"/></symbol>
+  <symbol id="ic-mega" viewBox="0 0 24 24"><path d="M3 10v4a1 1 0 0 0 1 1h2l6 4V5L6 9H4a1 1 0 0 0-1 1z"/><path d="M16 9a4 4 0 0 1 0 6"/><path d="M19 6a8 8 0 0 1 0 12"/></symbol>
+  <symbol id="ic-phone" viewBox="0 0 24 24"><rect x="7" y="2" width="10" height="20" rx="2"/><line x1="11" y1="18" x2="13" y2="18"/></symbol>
+  <symbol id="ic-medal" viewBox="0 0 24 24"><circle cx="12" cy="15" r="6"/><path d="M9 9.5L6 3M15 9.5l3-6.5M9 3h6"/><path d="M12 12v6"/></symbol>
+  <symbol id="ic-clip" viewBox="0 0 24 24"><rect x="5" y="4" width="14" height="17" rx="2"/><rect x="9" y="2.5" width="6" height="3" rx="1"/><line x1="8" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="16" y2="14"/><line x1="8" y1="18" x2="13" y2="18"/></symbol>
+  <symbol id="ic-palette" viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 2-.9 2-2 0-.5-.2-1-.5-1.4-.3-.4-.5-.9-.5-1.4 0-1.1.9-2 2-2h2.2A4.3 4.3 0 0 0 21 12 9 9 0 0 0 12 3z"/><circle cx="7.5" cy="10.5" r="1"/><circle cx="10.5" cy="7.5" r="1"/><circle cx="14.5" cy="7.7" r="1"/><circle cx="17" cy="10.8" r="1"/></symbol>
+  <symbol id="ic-check" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.7 2.7L16.5 9"/></symbol>
+  <symbol id="ic-chart" viewBox="0 0 24 24"><line x1="4" y1="20" x2="20" y2="20"/><rect x="6" y="12" width="3" height="8"/><rect x="11" y="7" width="3" height="13"/><rect x="16" y="3" width="3" height="17"/></symbol>
+  <symbol id="ic-star" viewBox="0 0 24 24"><path d="M12 3l2.6 5.8 6.3.6-4.7 4.3 1.4 6.2L12 16.9 6.4 20l1.4-6.2-4.7-4.3 6.3-.6L12 3z"/></symbol>
+  <symbol id="ic-tick" viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 6"/></symbol>
+  <symbol id="ic-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><line x1="19" y1="19" x2="15.3" y2="15.3"/></symbol>
+  <symbol id="ic-rocket" viewBox="0 0 24 24"><path d="M12 2c3 2 5 6 5 10 0 2-1 4-2 5l-1 3-2-2-2 2-1-3c-1-1-2-3-2-5 0-4 2-8 5-10z"/><circle cx="12" cy="10" r="1.6"/><path d="M8 16l-3 3M16 16l3 3"/></symbol>
+  <symbol id="ic-flag" viewBox="0 0 24 24"><path d="M5 3v18"/><path d="M5 4h13l-3 4 3 4H5"/></symbol>
+  <symbol id="ic-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></symbol>
+</svg>
+
+<div id="prog"><div id="prog-bar"></div></div>
+
+<div id="counter">
+  <div class="counter-dot" data-sec="hero" title="Intro"></div>
+  <div class="counter-dot" data-sec="sobre" title="O Projeto"></div>
+  <div class="counter-dot" data-sec="portfolio" title="Portfólio"></div>
+  <div class="counter-dot" data-sec="mercado" title="Mercado"></div>
+  <div class="counter-dot" data-sec="cinemark" title="Cinemark"></div>
+  <div class="counter-dot" data-sec="solucao" title="Solução"></div>
+  <div class="counter-dot" data-sec="patrocinio" title="Patrocínio"></div>
+  <div class="counter-dot" data-sec="onboarding" title="Onboarding"></div>
+  <div class="counter-dot" data-sec="cta" title="Contato"></div>
+</div>
+
+<div id="nav-wrapper">
+  <a href="#hero" id="site-logo-btn" title="Voltar ao início">
+    <img src="https://res.cloudinary.com/m5pxz0b4/image/upload/Logo.png" alt="The Gamers">
+  </a>
+  <nav id="mainnav">
+    <div class="nav-blob" id="nav-blob"></div>
+    <ul class="nav-links">
+      <li><a href="#sobre">Projeto</a></li>
+      <li><a href="#portfolio">Portfólio</a></li>
+      <li><a href="#mercado">Mercado</a></li>
+      <li><a href="#patrocinio">Patrocínio</a></li>
+      <li><a href="#onboarding">Onboarding</a></li>
+      <li><a href="#cta">Contato</a></li>
+    </ul>
+  </nav>
+  <div id="stage-readout">STAGE 00/12</div>
+</div>
+
+
+<!-- ① HERO -->
+<section id="hero">
+  <img class="bg-full" src="https://res.cloudinary.com/m5pxz0b4/image/upload/1.png" alt="" onerror="this.remove()">
+  <div class="bg-overlay full"></div>
+  <div class="hero-glow"></div>
+  <div class="paper-fold tr"></div>
+  <div class="paper-fold bl"></div>
+  <div class="hero-center">
+    <img src="https://res.cloudinary.com/m5pxz0b4/image/upload/Logo.png" alt="The Gamers" class="hero-logo" data-r>
+    <p class="hero-tag" data-r data-d="1">A verdadeira história por trás das telas.</p>
+    <p class="hero-sub" data-r data-d="2">PROPOSTA COMERCIAL</p>
+    <p class="hero-sub2" data-r data-d="2">TEMPORADA 2026</p>
+    <div class="chip-row" style="justify-content:center" data-r data-d="3">
+      <div class="chip"><span class="icon-box sm cyan"><svg class="ic"><use href="#ic-film"/></svg></span><span>Documentário Original</span></div>
+      <div class="chip"><span class="icon-box sm cyan"><svg class="ic"><use href="#ic-ticket"/></svg></span><span>Eventos Presenciais</span></div>
+      <div class="chip"><span class="icon-box sm cyan"><svg class="ic"><use href="#ic-phone"/></svg></span><span>Branded Content</span></div>
+    </div>
+  </div>
+  <div class="scroll-cue">▼ role para continuar ▼</div>
+</section>
+
+
+<!-- ② O PROJETO -->
+<section id="sobre">
+  <img class="side-panel-img right" src="https://res.cloudinary.com/m5pxz0b4/image/upload/4.png" alt="" onerror="this.remove()">
+  <div class="sec-wrap">
+    <div class="txt-col" style="max-width:480px">
+      <span class="eyebrow" data-r>STAGE 01 // O PROJETO</span>
+      <h2 class="head-h" data-r data-d="1">O QUE É A <span class="shine">THE GAMERS</span>?</h2>
+      <div class="rule" data-r data-d="1"></div>
+      <p class="body-txt" data-r data-d="2"><strong>Série documental premium</strong> que revela, em primeira mão, a trajetória real dos maiores nomes do e-sports brasileiro. Cada episódio (+/- 80 min) une narrativa cinematográfica, depoimentos exclusivos e estreias presenciais na Cinemark, conectando marcas ao público gamer de forma orgânica e memorável.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ③ NÚMEROS -->
+<section id="numeros">
+  <img class="side-panel-img left" src="https://res.cloudinary.com/m5pxz0b4/image/upload/2.png" alt="" onerror="this.remove()">
+  <div class="sec-wrap">
+    <div class="txt-col right" style="max-width:480px">
+      <span class="eyebrow" data-r>STAGE 02 // NÚMEROS</span>
+      <h2 class="head-h" data-r data-d="1">CREDIBILIDADE<br>EM <span class="shine">DADOS</span></h2>
+      <p class="sub-line" data-r data-d="1">Alcance real e engajamento orgânico são os números que sustentam a proposta.</p>
+      <div class="hstat-row">
+        <div class="hstat" data-r data-d="2"><span class="hstat-num shine">749.810</span><span class="hstat-lbl">Alcance orgânico no Instagram (mai–jun/26)</span></div>
+        <div class="hstat" data-r data-d="3"><span class="hstat-num shine">82,7%</span><span class="hstat-lbl">Do alcance vindo de não seguidores</span></div>
+      </div>
+      <button class="btn-pixel btn-sm" id="open-numeros-modal" data-r data-d="4"><svg class="ic"><use href="#ic-search"/></svg>Ver todos os dados</button>
+    </div>
+  </div>
+</section>
+
+<div class="modal-backdrop" id="numeros-modal">
+  <div class="modal-panel">
+    <button class="modal-close" id="close-numeros-modal">✕</button>
+    <p class="modal-title">Dados Completos de Credibilidade</p>
+    <p class="modal-sub">Temporada 2026 · mai–jun / 26</p>
+    <div class="modal-row">
+      <span class="modal-num shine">749.810</span>
+      <div><span class="modal-desc">Alcance orgânico no Instagram</span><span class="modal-meta">Mai–Jun / 26</span></div>
+    </div>
+    <div class="modal-row">
+      <span class="modal-num">82,7%</span>
+      <div><span class="modal-desc">Do alcance vem de não seguidores</span><span class="modal-meta">Audiência nova</span></div>
+    </div>
+    <div class="modal-row">
+      <span class="modal-num shine">30.592</span>
+      <div><span class="modal-desc">Interações totais no período</span><span class="modal-meta">Mai–Jun / 26</span></div>
+    </div>
+    <div class="modal-row">
+      <span class="modal-num">89,7%</span>
+      <div><span class="modal-desc">Das interações vindas de não seguidores</span><span class="modal-meta">Engajamento orgânico</span></div>
+    </div>
+    <div class="modal-row" style="border-bottom:none">
+      <span class="modal-num shine">5</span>
+      <div><span class="modal-desc">Pro players confirmados na temporada</span><span class="modal-meta">Temporada 2026</span></div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ④ PORTFÓLIO — única seção com caixas de foto -->
+<section id="portfolio">
+  <div class="sec-wrap">
+    <div class="txt-col center" style="max-width:640px">
+      <span class="eyebrow" data-r>STAGE 03 // PORTFÓLIO</span>
+      <h2 class="head-h" data-r data-d="1">CASES DE <span class="shine">SUCESSO</span></h2>
+      <p class="sub-line" data-r data-d="1">Pro players que já participaram e estarão na The Gamers.</p>
+    </div>
+    <div class="port-grid">
+      <div class="port-card" data-r>
+        <div class="art-slot">
+          <img src="https://res.cloudinary.com/m5pxz0b4/image/upload/portfolio-coldzera.jpg" alt="Coldzera" onerror="this.style.display='none'">
+          <div class="art-label"><span>Image/portfolio-coldzera.jpg</span></div>
+        </div>
+        <div class="port-card-body">
+          <p class="port-game-sm">CS2</p>
+          <p class="port-name">Coldzera</p>
+          <p class="port-desc">Bicampeão mundial de CS2. Melhor jogador do mundo por dois anos (HLTV).</p>
+          <span class="port-status launched"><span class="icon-box sm"><svg class="ic"><use href="#ic-check"/></svg></span>Lançado</span>
+        </div>
+      </div>
+      <div class="port-card" data-r data-d="1">
+        <div class="art-slot">
+          <img src="https://res.cloudinary.com/m5pxz0b4/image/upload/portfolio-blackoutz.jpg" alt="Blackoutz" onerror="this.style.display='none'">
+          <div class="art-label"><span>Image/portfolio-blackoutz.jpg</span></div>
+        </div>
+        <div class="port-card-body">
+          <p class="port-game-sm">Fortnite</p>
+          <p class="port-name">Blackoutz</p>
+          <p class="port-desc">Maior criador de conteúdo de Fortnite do Brasil. Ex-Cloud9.</p>
+          <span class="port-status launched"><span class="icon-box sm"><svg class="ic"><use href="#ic-check"/></svg></span>Lançado</span>
+        </div>
+      </div>
+      <div class="port-card" data-r data-d="2">
+        <div class="art-slot">
+          <img src="https://res.cloudinary.com/m5pxz0b4/image/upload/portfolio-sacy.jpg" alt="Sacy" onerror="this.style.display='none'">
+          <div class="art-label"><span>Image/portfolio-sacy.jpg</span></div>
+        </div>
+        <div class="port-card-body">
+          <p class="port-game-sm">Valorant</p>
+          <p class="port-name">Sacy</p>
+          <p class="port-desc">Campeão mundial de Valorant (2022).</p>
+          <span class="port-status launched"><span class="icon-box sm"><svg class="ic"><use href="#ic-check"/></svg></span>Lançado</span>
+        </div>
+      </div>
+      <div class="port-card" data-r data-d="3">
+        <div class="art-slot">
+          <img src="https://res.cloudinary.com/m5pxz0b4/image/upload/portfolio-racing.jpg" alt="Logitech G Racing Series" onerror="this.style.display='none'">
+          <div class="art-label"><span>Image/portfolio-racing.jpg</span></div>
+        </div>
+        <div class="port-card-body">
+          <p class="port-game">Logitech G</p>
+          <p class="port-name">Racing Series</p>
+          <p class="port-desc">Tudo sobre a maior competição de automobilismo virtual do Brasil em 2026.</p>
+          <span class="port-status editing"><span class="icon-box sm"><svg class="ic"><use href="#ic-clock"/></svg></span>Em edição</span>
+        </div>
+      </div>
+      <div class="port-card" data-r data-d="4">
+        <div class="art-slot">
+          <img src="https://res.cloudinary.com/m5pxz0b4/image/upload/v1787848869/CrisGuedes.png" alt="Cris Guedes" onerror="this.style.display='none'">
+          <div class="art-label"><span>https://res.cloudinary.com/m5pxz0b4/image/upload/v1787848869/CrisGuedes.png</span></div>
+        </div>
+        <div class="port-card-body">
+          <p class="port-game-sm">Kings League</p>
+          <p class="port-name">Cris Guedes</p>
+          <p class="port-desc">Presidente, campeão da primeira Kings League Brasil e CEO da Furia.</p>
+          <span class="port-status editing"><span class="icon-box sm"><svg class="ic"><use href="#ic-clock"/></svg></span>Em edição</span>
+        </div>
+      </div>
+    </div>
+    <div class="stat-chip-row" data-r>
+      <div class="stat-chip"><span class="icon-box sm cyan"><svg class="ic"><use href="#ic-camera"/></svg></span><b>749.810</b><span>alcance Instagram (mai–jun/26)</span></div>
+      <div class="stat-chip"><span class="icon-box sm cyan"><svg class="ic"><use href="#ic-chat"/></svg></span><b>30.592</b><span>interações totais</span></div>
+      <div class="stat-chip"><span class="icon-box sm cyan"><svg class="ic"><use href="#ic-play"/></svg></span><b>67,6%</b><span>engajamento via Reels</span></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ⑤ CINEMARK -->
+<section id="cinemark">
+  <img class="side-panel-img left" src="https://res.cloudinary.com/m5pxz0b4/image/upload/3.png" alt="" onerror="this.remove()">
+  <div class="sec-wrap">
+    <div class="txt-col right" style="max-width:480px">
+      <span class="eyebrow" data-r>STAGE 04 // ESTREIA NO CINEMARK</span>
+      <h2 class="head-h" data-r data-d="1">EVENTO <span class="shine">PRESENCIAL</span></h2>
+      <p class="sub-line" data-r data-d="1">Uma experiência exclusiva nas estreias, que coloca a marca no espaço físico onde os fãs se encontram com seus ídolos do e-sport.</p>
+      <div class="cinemark-stat" data-r data-d="2">
+        <span class="num shine">+200</span>
+        <span class="tele-desc" style="font-size:16px;color:var(--dim)">Pessoas presentes<br>em média por evento</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ⑥ O DESAFIO — alinhado à esquerda -->
+<section id="desafio">
+  <img class="bg-full" src="https://res.cloudinary.com/m5pxz0b4/image/upload/desafio-bg.jpg" alt="" onerror="this.remove()">
+  <div class="bg-overlay l"></div>
+  <div class="sec-wrap">
+    <div class="block-left">
+      <span class="eyebrow" data-r>STAGE 05 // O DESAFIO</span>
+      <h2 class="head-h" data-r data-d="1">O PROBLEMA <span class="shine">DAS MARCAS</span></h2>
+      <p class="sub-line" data-r data-d="1">Chegar no público gamer de forma autêntica é mais difícil do que parece.</p>
+      <div class="grid-2">
+        <div class="glass-card" data-r>
+          <div class="glass-card-head"><span class="icon-box"><svg class="ic"><use href="#ic-block"/></svg></span><p class="glass-card-title">Publicidade tradicional não converte</p></div>
+          <p class="glass-card-body">O público gamer (18–34 anos) usa ad-blocker, ignora banners e tem alta resistência à publicidade interruptiva.</p>
+        </div>
+        <div class="glass-card" data-r data-d="1">
+          <div class="glass-card-head"><span class="icon-box"><svg class="ic"><use href="#ic-bot"/></svg></span><p class="glass-card-title">Ativações forçadas afastam</p></div>
+          <p class="glass-card-body">Patrocínios genéricos sem contexto cultural geram rejeição. O público identifica quando uma marca "não entende o jogo".</p>
+        </div>
+        <div class="glass-card" data-r data-d="2">
+          <div class="glass-card-head"><span class="icon-box"><svg class="ic"><use href="#ic-trend-down"/></svg></span><p class="glass-card-title">Baixo retorno de brand awareness</p></div>
+          <p class="glass-card-body">Ações pontuais (torneios, banner em stream) geram exposição momentânea, sem vínculo emocional duradouro.</p>
+        </div>
+        <div class="glass-card" data-r data-d="3">
+          <div class="glass-card-head"><span class="icon-box"><svg class="ic"><use href="#ic-target"/></svg></span><p class="glass-card-title">Dificuldade de segmentação precisa</p></div>
+          <p class="glass-card-body">O público gamer é amplo e diverso. Sem narrativa adequada, a marca fica diluída entre centenas de conteúdos.</p>
+        </div>
+      </div>
+      <div class="callout" data-r data-d="4">
+        <span class="icon-box cyan"><svg class="ic"><use href="#ic-bulb"/></svg></span>
+        <span><b>Marcas precisam de conteúdo com profundidade emocional, credibilidade cultural e ativação presencial</b>, não apenas mídia.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ⑦ A SOLUÇÃO — alinhado à direita -->
+<section id="solucao">
+  <img class="bg-full" src="https://res.cloudinary.com/m5pxz0b4/image/upload/solucao-bg.jpg" alt="" onerror="this.remove()">
+  <div class="bg-overlay r"></div>
+  <div class="sec-wrap">
+    <div class="block-right">
+      <span class="eyebrow" data-r>STAGE 06 // A SOLUÇÃO</span>
+      <h2 class="head-h" data-r data-d="1">THE GAMERS <span class="shine">RESOLVE ISSO</span></h2>
+      <p class="sub-line" data-r data-d="1">Conteúdo com alma, alcance real e ativação premium.</p>
+      <div class="grid-3">
+        <div class="glass-card" data-r>
+          <div class="glass-card-head"><span class="icon-box cyan"><svg class="ic"><use href="#ic-heart"/></svg></span><p class="glass-card-title">Vínculo emocional genuíno</p></div>
+          <p class="glass-card-body">Documentários de 80 min criam conexão profunda com o protagonista. A marca aparece dentro da história.</p>
+        </div>
+        <div class="glass-card" data-r data-d="1">
+          <div class="glass-card-head"><span class="icon-box cyan"><svg class="ic"><use href="#ic-mega"/></svg></span><p class="glass-card-title">Alcance orgânico massivo</p></div>
+          <p class="glass-card-body">82,7% do alcance vem de não seguidores. Contato com audiência nova via conteúdo que ela escolheu consumir.</p>
+        </div>
+        <div class="glass-card" data-r data-d="2">
+          <div class="glass-card-head"><span class="icon-box cyan"><svg class="ic"><use href="#ic-ticket"/></svg></span><p class="glass-card-title">Experiência presencial exclusiva</p></div>
+          <p class="glass-card-body">O evento de estreia na Cinemark posiciona a marca no espaço físico onde os fãs estão.</p>
+        </div>
+        <div class="glass-card" data-r data-d="3">
+          <div class="glass-card-head"><span class="icon-box cyan"><svg class="ic"><use href="#ic-trophy"/></svg></span><p class="glass-card-title">Associação a legados reais</p></div>
+          <p class="glass-card-body">Coldzera, Sacy, Blackoutz: nomes com história. Valor de reputação que nenhum anúncio cria.</p>
+        </div>
+        <div class="glass-card" data-r data-d="4">
+          <div class="glass-card-head"><span class="icon-box cyan"><svg class="ic"><use href="#ic-target"/></svg></span><p class="glass-card-title">Segmentação precisa</p></div>
+          <p class="glass-card-body">Público jovem entre 25–34 anos (44,2%), São Paulo e Rio de Janeiro, com poder de compra real.</p>
+        </div>
+        <div class="glass-card" data-r data-d="5">
+          <div class="glass-card-head"><span class="icon-box cyan"><svg class="ic"><use href="#ic-phone"/></svg></span><p class="glass-card-title">Branded content multiplataforma</p></div>
+          <p class="glass-card-body">Posts em collab, stories, reels e conteúdos exclusivos co-criados com o pro player.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ⑧ MERCADO -->
+<section id="mercado">
+  <img class="bg-full" src="https://res.cloudinary.com/m5pxz0b4/image/upload/mercado-bg.jpg" alt="" onerror="this.remove()">
+  <div class="bg-overlay full"></div>
+  <div class="sec-wrap">
+    <div class="split">
+      <div class="txt-col">
+        <span class="eyebrow" data-r>STAGE 07 // CONTEXTO DE MERCADO</span>
+        <h2 class="head-h" data-r data-d="1">POR QUE <span class="shine">AGORA</span>?</h2>
+        <p class="sub-line" data-r data-d="1">O e-sports cresceu, e o público amadureceu.</p>
+        <div style="display:flex;flex-direction:column;gap:14px">
+          <div class="glass-card" data-r data-d="2">
+            <div class="glass-card-head"><span class="icon-box cyan"><svg class="ic"><use href="#ic-ticket"/></svg></span><p class="glass-card-title">Evento presencial premium</p></div>
+            <p class="glass-card-body">Estreias exclusivas nas salas da Cinemark com a presença de influencers e ex-players que movimentam a comunidade, transformam o evento em uma oportunidade única de conteúdo, e em uma experiência de marca inesquecível, que nenhum streaming entrega.</p>
+          </div>
+          <div class="glass-card" data-r data-d="3">
+            <div class="glass-card-head"><span class="icon-box cyan"><svg class="ic"><use href="#ic-film"/></svg></span><p class="glass-card-title">Imersão cinematográfica</p></div>
+            <p class="glass-card-body">Documentários com média de 80 min, narrativa emocional real, depoimentos exclusivos de família e bastidores nunca vistos.</p>
+          </div>
+          <div class="glass-card" data-r data-d="4">
+            <div class="glass-card-head"><span class="icon-box cyan"><svg class="ic"><use href="#ic-trophy"/></svg></span><p class="glass-card-title">Bagagem e credibilidade</p></div>
+            <p class="glass-card-body">Coldzera, Sacy, Blackoutz: nomes que conquistaram o mundo e têm audiência fiel. Aproximação orgânica com a cultura gamer.</p>
+          </div>
+        </div>
+      </div>
+      <div class="market-box" data-r data-d="2">
+        <p class="market-title">Mercado de E-sports no Brasil</p>
+        <div class="market-row"><span class="market-val">R$ 1,3 bi</span><span class="market-lbl">Faturamento e-sports em 2025</span></div>
+        <div class="market-row"><span class="market-val">R$ 12,7 bi</span><span class="market-lbl">Mercado total de games (2025)</span></div>
+        <div class="market-row"><span class="market-val">+20 mi</span><span class="market-lbl">Espectadores de e-sports no Brasil</span></div>
+        <div class="market-row"><span class="market-val">74,5%</span><span class="market-lbl">Dos brasileiros jogam regularmente</span></div>
+        <div class="market-row"><span class="market-val">76,5%</span><span class="market-lbl">Reconhecem e-sports como esporte legítimo</span></div>
+        <div class="market-row"><span class="market-val">25–34</span><span class="market-lbl">Maior faixa etária do público TG (44,2%)</span></div>
+        <div class="market-row" style="border-bottom:none"><span class="market-val">18–24</span><span class="market-lbl">Segundo maior grupo (41,5%)</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ⑨ PATROCÍNIO -->
+<section id="patrocinio">
+  <img class="bg-full" src="https://res.cloudinary.com/m5pxz0b4/image/upload/patrocinio-bg.jpg" alt="" onerror="this.remove()">
+  <div class="bg-overlay full"></div>
+  <div class="sec-wrap">
+    <div class="block-left">
+      <span class="eyebrow" data-r>STAGE 08 // PATROCÍNIO</span>
+      <h2 class="head-h" data-r data-d="1">ESCOLHA <span class="shine">SEU NÍVEL</span></h2>
+      <p class="sub-line" data-r data-d="1">Cotas disponíveis para a Temporada 2026.</p>
+    </div>
+    <div class="tier-grid">
+      <div class="tier-card bronze" data-r>
+        <p class="tier-medal"><span class="icon-box" style="border-color:rgba(201,128,63,.4)"><svg class="ic" style="stroke:var(--bronze)"><use href="#ic-medal"/></svg></span></p>
+        <p class="tier-name">BRONZE</p>
+        <p class="tier-price">R$ 15k – 25k <span style="font-size:13px;color:var(--dim3)">/ episódio</span></p>
+        <ul class="tier-list">
+          <li>Logo nos créditos finais do documentário</li>
+          <li>Menção da marca nas legendas dos posts de lançamento</li>
+          <li>Logo no backdrop do evento (Cinemark)</li>
+          <li>10 convites VIP para o evento de estreia</li>
+        </ul>
+      </div>
+      <div class="tier-card prata" data-r data-d="1">
+        <p class="tier-medal"><span class="icon-box" style="border-color:rgba(201,207,216,.4)"><svg class="ic" style="stroke:var(--silver)"><use href="#ic-medal"/></svg></span></p>
+        <p class="tier-name">PRATA</p>
+        <p class="tier-price">R$ 25k – 35k <span style="font-size:13px;color:var(--dim3)">/ episódio</span></p>
+        <ul class="tier-list">
+          <li>Todos os benefícios Bronze</li>
+          <li>1 collab durante a campanha de lançamento</li>
+          <li>Menção verbal pelos apresentadores no evento</li>
+          <li>Espaço no banner principal (backdrop)</li>
+          <li>15 convites VIP para o evento de estreia</li>
+        </ul>
+      </div>
+      <div class="tier-card gold" data-r data-d="2">
+        <span class="tier-ribbon"><svg class="ic"><use href="#ic-star"/></svg>Patrocínio Master Exclusivo</span>
+        <p class="tier-medal" style="margin-top:30px"><span class="icon-box" style="border-color:rgba(232,185,60,.5)"><svg class="ic" style="stroke:var(--gold)"><use href="#ic-medal"/></svg></span></p>
+        <p class="tier-name">GOLD</p>
+        <p class="tier-price">R$ 35k – 45k <span style="font-size:13px;color:var(--dim3)">/ episódio</span></p>
+        <ul class="tier-list">
+          <li>Todos os benefícios Prata</li>
+          <li>Mostra da marca no início e créditos do documentário</li>
+          <li>Conteúdo exclusivo em collab com o pro player</li>
+          <li>Ativação de marca no evento (totem / produto / XP)</li>
+          <li>30 convites VIP para o evento de estreia</li>
+          <li>Reunião de briefing estratégico com a equipe</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ⑩ ANÁLISE COMPARATIVA -->
+<section id="comparativo">
+  <img class="bg-full" src="https://res.cloudinary.com/m5pxz0b4/image/upload/comparativo-bg.jpg" alt="" onerror="this.remove()">
+  <div class="bg-overlay full"></div>
+  <div class="sec-wrap">
+    <div class="block-right">
+      <span class="eyebrow" data-r>STAGE 09 // ANÁLISE COMPARATIVA</span>
+      <h2 class="head-h" data-r data-d="1">O QUE VOCÊ <span class="shine">RECEBE</span></h2>
+      <p class="sub-line" data-r data-d="1">Por que a The Gamers entrega mais valor por real investido.</p>
+    </div>
+    <div class="comp-table-wrap" data-r data-d="2">
+      <table class="comp-table">
+        <thead>
+          <tr>
+            <th>Benefício</th>
+            <th><span class="th-ic"><svg class="ic" style="stroke:var(--bronze)"><use href="#ic-medal"/></svg>Bronze</span></th>
+            <th><span class="th-ic"><svg class="ic" style="stroke:var(--silver)"><use href="#ic-medal"/></svg>Prata</span></th>
+            <th class="cyan-h"><span class="th-ic"><svg class="ic"><use href="#ic-medal"/></svg>Gold</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Investimento por episódio</td><td>R$ 15k–25k</td><td>R$ 25k–35k</td><td class="cyan-c">R$ 35k–45k</td></tr>
+          <tr><td>Convites VIP (evento)</td><td>10</td><td>15</td><td class="cyan-c">30</td></tr>
+          <tr><td>Aparições no documentário</td><td>Créditos finais</td><td>Créditos + vinheta</td><td class="cyan-c">Início, créditos e vinheta</td></tr>
+          <tr><td>Collab com pro player</td><td>—</td><td>1 collab</td><td class="cyan-c">Conteúdo exclusivo</td></tr>
+          <tr><td>Ativação no evento</td><td>—</td><td>—</td><td class="cyan-c">Totem / produto / XP</td></tr>
+          <tr><td>Menção verbal no evento</td><td>—</td><td>✓</td><td class="cyan-c">✓</td></tr>
+          <tr><td>Briefing estratégico</td><td>—</td><td>—</td><td class="cyan-c">✓</td></tr>
+          <tr><td>Exclusividade por episódio</td><td>—</td><td>—</td><td class="cyan-c">✓ Exclusivo</td></tr>
+          <tr><td>Alcance potencial estimado</td><td>~80k impressões</td><td>~180k impressões</td><td class="cyan-c">~400k+ impressões</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout" data-r data-d="3">
+      <span class="icon-box cyan"><svg class="ic"><use href="#ic-target"/></svg></span>
+      <span><b>Alcance orgânico acima de 82%.</b> Sua marca aparece para quem ainda não te conhece, dentro de um contexto de admiração ao protagonista.</span>
+    </div>
+  </div>
+</section>
+
+
+<!-- ⑪ ONBOARDING -->
+<section id="onboarding">
+  <img class="bg-full" src="https://res.cloudinary.com/m5pxz0b4/image/upload/onboarding-bg.jpg" alt="" onerror="this.remove()">
+  <div class="bg-overlay full"></div>
+  <div class="sec-wrap">
+    <div class="block-left">
+      <span class="eyebrow" data-r>STAGE 10 // ONBOARDING</span>
+      <h2 class="head-h" data-r data-d="1">PRÓXIMOS <span class="shine">PASSOS</span></h2>
+      <p class="sub-line" data-r data-d="1">O que acontece depois que você fechar com a gente.</p>
+    </div>
+    <div class="timeline">
+      <div class="tl-step" data-r>
+        <span class="icon-box cyan"><svg class="ic"><use href="#ic-link"/></svg></span>
+        <p class="tl-name">Fechamento</p>
+        <p class="tl-body">Assinatura do contrato e alinhamento de cota escolhida.</p>
+      </div>
+      <div class="tl-step" data-r data-d="1">
+        <span class="icon-box cyan"><svg class="ic"><use href="#ic-clip"/></svg></span>
+        <p class="tl-name">Briefing</p>
+        <p class="tl-body">Reunião estratégica de mensagens, objetivos e materiais da marca.</p>
+      </div>
+      <div class="tl-step" data-r data-d="2">
+        <span class="icon-box cyan"><svg class="ic"><use href="#ic-palette"/></svg></span>
+        <p class="tl-name">Aplicação</p>
+        <p class="tl-body">Inserção da marca nos materiais: backdrop, vinheta, créditos e collab.</p>
+      </div>
+      <div class="tl-step" data-r data-d="3">
+        <span class="icon-box cyan"><svg class="ic"><use href="#ic-check"/></svg></span>
+        <p class="tl-name">Aprovação</p>
+        <p class="tl-body">Preview de todas as aplicações para aprovação antes do lançamento.</p>
+      </div>
+      <div class="tl-step" data-r data-d="4">
+        <span class="icon-box cyan"><svg class="ic"><use href="#ic-rocket"/></svg></span>
+        <p class="tl-name">Lançamento</p>
+        <p class="tl-body">Evento presencial na Cinemark com convidados VIP e ativação de marca.</p>
+      </div>
+      <div class="tl-step" data-r data-d="5">
+        <span class="icon-box cyan"><svg class="ic"><use href="#ic-chart"/></svg></span>
+        <p class="tl-name">Relatório</p>
+        <p class="tl-body">Entrega de resultados: alcance, engajamento e mídia espontânea.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ⑫ CTA FINAL -->
+<section id="cta">
+  <img class="bg-full" src="https://res.cloudinary.com/m5pxz0b4/image/upload/cta-bg.jpg" alt="" onerror="this.remove()">
+  <div class="bg-overlay full"></div>
+  <div class="sec-wrap">
+    <div class="split">
+      <div class="txt-col">
+        <span class="eyebrow" data-r>STAGE 11 // LEVEL UP</span>
+        <h2 class="head-h" data-r data-d="1">VAMOS SUBIR DE <span class="shine">NÍVEL JUNTOS</span>?</h2>
+        <div class="rule-check" data-r data-d="1"></div>
+        <p class="body-txt" data-r data-d="2">As cotas da temporada 2026 são limitadas. Fale com a gente e garanta sua marca dentro do maior projeto documental do e-sports brasileiro.</p>
+        <div class="contact-list" data-r data-d="3">
+          <div class="contact-item"><span class="contact-lbl">E-mail</span><span class="contact-val">contatothegamersbr@gmail.com</span></div>
+          <div class="contact-item"><span class="contact-lbl">Instagram</span><span class="contact-val">@thegamers</span></div>
+          <div class="contact-item"><span class="contact-lbl">TikTok</span><span class="contact-val">@thegamersbrasil</span></div>
+        </div>
+      </div>
+      <div class="vip-panel" data-r data-d="2">
+        <div class="vip-star"><span class="icon-box cyan"><svg class="ic"><use href="#ic-star"/></svg></span></div>
+        <p class="vip-title">VIP ACCESS</p>
+        <ul class="vip-list">
+          <li><span class="icon-box sm green"><svg class="ic"><use href="#ic-tick"/></svg></span>Cota limitada por episódio</li>
+          <li><span class="icon-box sm green"><svg class="ic"><use href="#ic-tick"/></svg></span>Processo de onboarding estruturado</li>
+          <li><span class="icon-box sm green"><svg class="ic"><use href="#ic-tick"/></svg></span>Aprovação prévia de todas as peças</li>
+          <li><span class="icon-box sm green"><svg class="ic"><use href="#ic-tick"/></svg></span>Relatório de resultados pós-evento</li>
+          <li><span class="icon-box sm green"><svg class="ic"><use href="#ic-tick"/></svg></span>Acesso VIP ao evento de estreia</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <img src="https://res.cloudinary.com/m5pxz0b4/image/upload/Logo.png" alt="The Gamers" class="foot-logo">
+  <div class="foot-meta">
+    <div>4Content · contatothegamersbr@gmail.com</div>
+    <div>@thegamers · @thegamersbrasil</div>
+  </div>
+</footer>
+<div class="foot-bottom">THE GAMERS · A verdadeira história por trás das telas. · Temporada 2026</div>
+
+
+<script>
+// ── Text scroll reveal
+const reveals = document.querySelectorAll('[data-r]');
+const ro = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('vis') });
+}, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+reveals.forEach(el => ro.observe(el));
+
+// ── Image slots (portfólio): mark filled when real image loads
+document.querySelectorAll('.art-slot img').forEach(img => {
+  img.addEventListener('load', () => { if (img.naturalWidth > 1) img.closest('.art-slot').classList.add('filled'); });
+  if (img.complete && img.naturalWidth > 1) img.closest('.art-slot').classList.add('filled');
+});
+
+// ── Progress bar
+const bar = document.getElementById('prog-bar');
+window.addEventListener('scroll', () => {
+  const pct = scrollY / (document.documentElement.scrollHeight - innerHeight) * 100;
+  bar.style.width = pct + '%';
+}, { passive: true });
+
+// ── Nav active + stage rail + stage readout
+const secs  = document.querySelectorAll('section[id]');
+const links = document.querySelectorAll('.nav-links a');
+const dots  = document.querySelectorAll('.counter-dot');
+const readout = document.getElementById('stage-readout');
+const totalStages = secs.length;
+
+const sio = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    const id = e.target.id;
+    links.forEach(l => l.classList.toggle('on', l.getAttribute('href') === '#' + id));
+    dots.forEach(d  => d.classList.toggle('on', d.dataset.sec === id));
+    const idx = Array.from(secs).indexOf(e.target) + 1;
+    readout.textContent = 'STAGE ' + String(idx).padStart(2,'0') + '/' + String(totalStages).padStart(2,'0');
+  });
+}, { threshold: 0.4 });
+secs.forEach(s => sio.observe(s));
+
+dots.forEach(d => {
+  d.addEventListener('click', () => {
+    document.getElementById(d.dataset.sec)?.scrollIntoView({ behavior: 'smooth' });
+  });
+});
+
+// ── Nav floating pill blob (slow-motion light)
+const navEl = document.getElementById('mainnav');
+const blob  = document.getElementById('nav-blob');
+let bX=0,bY=0,tX=0,tY=0,mouseOver=false;
+function initBlob(){ const r=navEl.getBoundingClientRect(); bX=r.width/2; bY=r.height/2; tX=bX; tY=bY; blob.style.opacity='1'; }
+let t=0;
+function ambientTarget(){ const r=navEl.getBoundingClientRect(); t+=0.0035; tX=r.width*(0.3+0.4*(Math.sin(t*1.0)*0.5+0.5)); tY=r.height*(0.2+0.6*(Math.sin(t*1.7+1)*0.5+0.5)); }
+navEl.addEventListener('mousemove', e => { const r=navEl.getBoundingClientRect(); tX=e.clientX-r.left; tY=e.clientY-r.top; mouseOver=true; });
+navEl.addEventListener('mouseleave', () => { mouseOver=false; });
+function loop(){ if(!mouseOver) ambientTarget(); const speed=mouseOver?0.1:0.012; bX+=(tX-bX)*speed; bY+=(tY-bY)*speed; blob.style.left=bX+'px'; blob.style.top=bY+'px'; requestAnimationFrame(loop); }
+initBlob(); loop();
+
+// ── Modal: expandir dados (seção Números)
+const modal = document.getElementById('numeros-modal');
+const openModalBtn = document.getElementById('open-numeros-modal');
+const closeModalBtn = document.getElementById('close-numeros-modal');
+openModalBtn.addEventListener('click', () => modal.classList.add('open'));
+closeModalBtn.addEventListener('click', () => modal.classList.remove('open'));
+modal.addEventListener('click', e => { if (e.target === modal) modal.classList.remove('open'); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') modal.classList.remove('open'); });
+</script>
+</body>
+</html>
