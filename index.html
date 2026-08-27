@@ -164,6 +164,38 @@ nav {
   backdrop-filter: blur(24px); white-space:nowrap;
 }
 
+/* Mobile hamburger + dropdown panel */
+.hamburger {
+  display:none; flex-direction:column; align-items:center; justify-content:center; gap:5px;
+  width:42px; height:42px; flex-shrink:0; border-radius:14px;
+  border:1px solid rgba(255,255,255,.18); background: rgba(20,20,22,.55);
+  backdrop-filter: blur(24px) saturate(180%); cursor:pointer;
+}
+.hamburger span { display:block; width:17px; height:2px; background:#fff; border-radius:2px; transition: transform .25s ease, opacity .2s ease; }
+.hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity:0; }
+.hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+#mobile-nav-panel {
+  position: fixed; top: 72px; left:50%; transform: translateX(-50%) translateY(-14px);
+  width: calc(100% - 32px); max-width: 380px; z-index: 9000;
+  background: rgba(15,15,17,.94); backdrop-filter: blur(28px) saturate(180%);
+  -webkit-backdrop-filter: blur(28px) saturate(180%);
+  border: 1px solid rgba(255,255,255,.16); border-radius: 22px;
+  padding: 10px; display:flex; flex-direction:column; gap:2px;
+  opacity:0; pointer-events:none; transition: opacity .25s ease, transform .25s ease;
+  box-shadow: 0 24px 60px rgba(0,0,0,.55), inset 0 1px 0 rgba(255,255,255,.08);
+}
+#mobile-nav-panel.open { opacity:1; pointer-events:all; transform: translateX(-50%) translateY(0); }
+#mobile-nav-panel a {
+  font-family: var(--label); font-weight:800; font-variation-settings: 'wght' var(--wght-medium), 'wdth' 100, 'slnt' 0;
+  font-size:15px; letter-spacing:.03em; text-transform:uppercase;
+  color: rgba(255,255,255,.72); text-decoration:none; padding:15px 18px; border-radius:14px;
+  transition: background .2s, color .2s;
+}
+#mobile-nav-panel a:hover, #mobile-nav-panel a.on { background: rgba(255,255,255,.09); color:#fff; }
+@media (min-width: 961px) { #mobile-nav-panel { display:none; } }
+
 /* ═══════════════════════════════════════════
    STAGE RAIL
 ═══════════════════════════════════════════ */
@@ -202,7 +234,7 @@ section {
 .side-panel-img { position:absolute; top:0; bottom:0; width:42%; height:100%; object-fit:cover; z-index:0; }
 .side-panel-img.right { right:0; }
 .side-panel-img.left { left:0; }
-@media (max-width: 960px) { .side-panel-img { display:none; } }
+.mobile-dark-overlay { display:none; }
 
 .sec-wrap { position:relative; z-index:2; max-width:1240px; margin:0 auto; padding:0 80px; width:100%; }
 
@@ -300,6 +332,9 @@ h2.head-h {
    PORTFÓLIO — única seção com fotos
 ═══════════════════════════════════════════ */
 .port-grid { display:grid; grid-template-columns: repeat(5, 1fr); gap:14px; }
+
+.swipe-toast { display:none; }
+@keyframes swipe-hint { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(-16px); } }
 .port-card { background: var(--panel); border:1px solid rgba(255,255,255,.16); border-radius:20px; overflow:hidden; transition: transform .2s, border-color .2s; display:flex; flex-direction:column; backdrop-filter: blur(16px); }
 .port-card:hover { transform: translateY(-6px); border-color: rgba(255,255,255,.4); }
 .art-slot { position:relative; width:100%; aspect-ratio:1/1; background: repeating-conic-gradient(rgba(255,255,255,.05) 0% 25%, rgba(255,255,255,.015) 0% 50%) 0 0/24px 24px, var(--bg2); border-bottom:1px solid rgba(255,255,255,.16); overflow:hidden; display:flex; align-items:center; justify-content:center; }
@@ -439,14 +474,14 @@ footer { background: var(--bg); padding:50px 80px 30px; display:flex; align-item
 ═══════════════════════════════════════════ */
 @media (max-width: 960px) {
   #nav-wrapper { top:10px; }
-  .nav-links a { font-size:8px; padding:10px 8px }
-  #stage-readout { font-size:12px; padding:6px 9px }
+  .nav-links { display:none; }
+  .hamburger { display:flex; }
+  #stage-readout { font-size:11px; padding:6px 9px }
   #counter { display:none }
   .sec-wrap { padding:0 24px }
   section { padding:110px 0 60px }
   .split { grid-template-columns:1fr; gap:32px; }
   .txt-col, .txt-col.right, .block-left, .block-right { max-width:100%; margin-left:0; margin-right:0; }
-  .port-grid { grid-template-columns:repeat(2,1fr) }
   .grid-2, .grid-3, .tier-grid { grid-template-columns:1fr }
   .timeline { grid-template-columns:repeat(2,1fr) }
   .comp-table { font-size:11px }
@@ -455,6 +490,36 @@ footer { background: var(--bg); padding:50px 80px 30px; display:flex; align-item
   .foot-meta { text-align:center }
   .hstat { flex-direction:column; gap:6px }
   .modal-row { flex-direction:column; gap:4px }
+
+  /* imagens de fundo mais escuras no mobile (exceto hero) */
+  .side-panel-img { position:absolute; inset:0; width:100%; height:100%; }
+  .mobile-dark-overlay { display:block; position:absolute; inset:0; z-index:1; background: rgba(5,5,5,.74); }
+  .bg-overlay.l, .bg-overlay.r { background: rgba(5,5,5,.88); }
+  .bg-overlay.full { background: rgba(5,5,5,.9); }
+
+  /* portfólio: carrossel arrastável */
+  .swipe-toast {
+    display:flex; align-items:center; gap:10px;
+    background: rgba(20,20,22,.85); backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border:1px solid rgba(255,255,255,.18); border-radius:999px;
+    padding:10px 16px; margin: 0 0 18px; max-width: 100%;
+    font-family: var(--label); font-weight:700; font-size:12.5px; color:var(--dim); line-height:1.4;
+    box-shadow: 0 14px 34px rgba(0,0,0,.4);
+    opacity:0; transform: translateY(-8px);
+    transition: opacity .4s ease, transform .4s ease;
+  }
+  .swipe-toast.show { opacity:1; transform:translateY(0); }
+  .swipe-toast.hide { opacity:0; transform:translateY(-8px); }
+  .port-grid {
+    display:flex; overflow-x:auto; gap:14px;
+    scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch;
+    margin:0 -24px; padding:2px 24px 10px;
+    scrollbar-width:none;
+  }
+  .port-grid::-webkit-scrollbar { display:none; }
+  .port-card { flex:0 0 76%; scroll-snap-align:start; }
+  .port-grid.play-hint .port-card.hint-swipe { animation: swipe-hint .45s ease-in-out 2; }
 }
 
 </style>
@@ -490,6 +555,7 @@ footer { background: var(--bg); padding:50px 80px 30px; display:flex; align-item
   <symbol id="ic-rocket" viewBox="0 0 24 24"><path d="M12 2c3 2 5 6 5 10 0 2-1 4-2 5l-1 3-2-2-2 2-1-3c-1-1-2-3-2-5 0-4 2-8 5-10z"/><circle cx="12" cy="10" r="1.6"/><path d="M8 16l-3 3M16 16l3 3"/></symbol>
   <symbol id="ic-flag" viewBox="0 0 24 24"><path d="M5 3v18"/><path d="M5 4h13l-3 4 3 4H5"/></symbol>
   <symbol id="ic-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></symbol>
+  <symbol id="ic-swipe" viewBox="0 0 24 24"><path d="M8 7l-5 5 5 5"/><path d="M16 7l5 5-5 5"/><line x1="3" y1="12" x2="21" y2="12"/></symbol>
 </svg>
 
 <div id="prog"><div id="prog-bar"></div></div>
@@ -521,7 +587,17 @@ footer { background: var(--bg); padding:50px 80px 30px; display:flex; align-item
       <li><a href="#cta">Contato</a></li>
     </ul>
   </nav>
+  <button id="mobile-menu-btn" class="hamburger" aria-label="Abrir menu"><span></span><span></span><span></span></button>
   <div id="stage-readout">STAGE 00/12</div>
+</div>
+
+<div id="mobile-nav-panel">
+  <a href="#sobre">Projeto</a>
+  <a href="#portfolio">Portfólio</a>
+  <a href="#mercado">Mercado</a>
+  <a href="#patrocinio">Patrocínio</a>
+  <a href="#onboarding">Onboarding</a>
+  <a href="#cta">Contato</a>
 </div>
 
 
@@ -550,6 +626,7 @@ footer { background: var(--bg); padding:50px 80px 30px; display:flex; align-item
 <!-- ② O PROJETO -->
 <section id="sobre">
   <img class="side-panel-img right" src="https://res.cloudinary.com/m5pxz0b4/image/upload/4.png" alt="" onerror="this.remove()">
+  <div class="mobile-dark-overlay"></div>
   <div class="sec-wrap">
     <div class="txt-col" style="max-width:480px">
       <span class="eyebrow" data-r>STAGE 01 // O PROJETO</span>
@@ -564,6 +641,7 @@ footer { background: var(--bg); padding:50px 80px 30px; display:flex; align-item
 <!-- ③ NÚMEROS -->
 <section id="numeros">
   <img class="side-panel-img left" src="https://res.cloudinary.com/m5pxz0b4/image/upload/2.png" alt="" onerror="this.remove()">
+  <div class="mobile-dark-overlay"></div>
   <div class="sec-wrap">
     <div class="txt-col right" style="max-width:480px">
       <span class="eyebrow" data-r>STAGE 02 // NÚMEROS</span>
@@ -615,8 +693,12 @@ footer { background: var(--bg); padding:50px 80px 30px; display:flex; align-item
       <h2 class="head-h" data-r data-d="1">CASES DE <span class="shine">SUCESSO</span></h2>
       <p class="sub-line" data-r data-d="1">Pro players que já participaram e estarão na The Gamers.</p>
     </div>
+    <div class="swipe-toast" id="swipe-toast">
+      <span class="icon-box sm cyan"><svg class="ic"><use href="#ic-swipe"/></svg></span>
+      <span>Arraste para o lado para ver todos os cases de sucesso.</span>
+    </div>
     <div class="port-grid">
-      <div class="port-card" data-r>
+      <div class="port-card hint-swipe" data-r>
         <div class="art-slot">
           <img src="https://res.cloudinary.com/m5pxz0b4/image/upload/portfolio-coldzera.jpg" alt="Coldzera" onerror="this.style.display='none'">
           <div class="art-label"><span>Image/portfolio-coldzera.jpg</span></div>
@@ -628,7 +710,7 @@ footer { background: var(--bg); padding:50px 80px 30px; display:flex; align-item
           <span class="port-status launched"><span class="icon-box sm"><svg class="ic"><use href="#ic-check"/></svg></span>Lançado</span>
         </div>
       </div>
-      <div class="port-card" data-r data-d="1">
+      <div class="port-card hint-swipe" data-r data-d="1">
         <div class="art-slot">
           <img src="https://res.cloudinary.com/m5pxz0b4/image/upload/portfolio-blackoutz.jpg" alt="Blackoutz" onerror="this.style.display='none'">
           <div class="art-label"><span>Image/portfolio-blackoutz.jpg</span></div>
@@ -640,7 +722,7 @@ footer { background: var(--bg); padding:50px 80px 30px; display:flex; align-item
           <span class="port-status launched"><span class="icon-box sm"><svg class="ic"><use href="#ic-check"/></svg></span>Lançado</span>
         </div>
       </div>
-      <div class="port-card" data-r data-d="2">
+      <div class="port-card hint-swipe" data-r data-d="2">
         <div class="art-slot">
           <img src="https://res.cloudinary.com/m5pxz0b4/image/upload/portfolio-sacy.jpg" alt="Sacy" onerror="this.style.display='none'">
           <div class="art-label"><span>Image/portfolio-sacy.jpg</span></div>
@@ -689,6 +771,7 @@ footer { background: var(--bg); padding:50px 80px 30px; display:flex; align-item
 <!-- ⑤ CINEMARK -->
 <section id="cinemark">
   <img class="side-panel-img left" src="https://res.cloudinary.com/m5pxz0b4/image/upload/3.png" alt="" onerror="this.remove()">
+  <div class="mobile-dark-overlay"></div>
   <div class="sec-wrap">
     <div class="txt-col right" style="max-width:480px">
       <span class="eyebrow" data-r>STAGE 04 // ESTREIA NO CINEMARK</span>
@@ -1024,7 +1107,7 @@ window.addEventListener('scroll', () => {
 
 // ── Nav active + stage rail + stage readout
 const secs  = document.querySelectorAll('section[id]');
-const links = document.querySelectorAll('.nav-links a');
+const links = document.querySelectorAll('.nav-links a, #mobile-nav-panel a');
 const dots  = document.querySelectorAll('.counter-dot');
 const readout = document.getElementById('stage-readout');
 const totalStages = secs.length;
@@ -1040,6 +1123,43 @@ const sio = new IntersectionObserver(entries => {
   });
 }, { threshold: 0.4 });
 secs.forEach(s => sio.observe(s));
+
+// ── Mobile hamburger menu
+const hamburger = document.getElementById('mobile-menu-btn');
+const mobilePanel = document.getElementById('mobile-nav-panel');
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('open');
+  mobilePanel.classList.toggle('open');
+});
+mobilePanel.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  hamburger.classList.remove('open');
+  mobilePanel.classList.remove('open');
+}));
+document.addEventListener('click', e => {
+  if (mobilePanel.classList.contains('open') && !mobilePanel.contains(e.target) && !hamburger.contains(e.target)) {
+    hamburger.classList.remove('open');
+    mobilePanel.classList.remove('open');
+  }
+});
+
+// ── Portfólio mobile: toast "arraste" + dica de swipe nos primeiros cards
+const swipeToast = document.getElementById('swipe-toast');
+const portGrid = document.querySelector('.port-grid');
+let swipeHintPlayed = false;
+const portfolioObserver = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting && !swipeHintPlayed) {
+      swipeHintPlayed = true;
+      swipeToast.classList.add('show');
+      portGrid.classList.add('play-hint');
+      setTimeout(() => {
+        swipeToast.classList.remove('show');
+        swipeToast.classList.add('hide');
+      }, 4500);
+    }
+  });
+}, { threshold: 0.4 });
+portfolioObserver.observe(document.getElementById('portfolio'));
 
 dots.forEach(d => {
   d.addEventListener('click', () => {
