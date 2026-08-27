@@ -298,9 +298,10 @@ h2.head-h {
 .hero-glow { position:absolute; width:640px; height:640px; border-radius:50%; background: radial-gradient(circle, rgba(255,255,255,.09) 0%, transparent 68%); top:50%; left:50%; transform:translate(-50%,-50%); pointer-events:none; }
 .hero-logo { width: clamp(340px, 40vw, 560px); height:auto; display:block; filter: drop-shadow(0 6px 40px rgba(0,0,0,.6)); position:relative; z-index:1; }
 .hero-tag { font-family: var(--font); font-weight:400; font-variation-settings: 'wght' var(--wght-semibold), 'wdth' 100, 'slnt' 0; font-size:22px; color: var(--dim); letter-spacing:.02em; margin-top:26px; }
+.hero-break { display:none; }
 .hero-sub { font-family: var(--head); font-size: clamp(15px,1.8vw,20px); color: var(--cyan); letter-spacing:.14em; margin-top:46px; }
 .hero-sub2 { font-family: var(--label); font-weight:700; font-variation-settings: 'wght' var(--wght-medium), 'wdth' 100, 'slnt' 0; font-size:14px; color: var(--dim3); letter-spacing:.3em; margin-top:10px; }
-.scroll-cue { position:absolute; bottom:36px; left:50%; transform:translateX(-50%); font-family: var(--label); font-weight:700; font-variation-settings: 'wght' var(--wght-medium), 'wdth' 100, 'slnt' 0; font-size:12px; letter-spacing:.2em; color:var(--dim2); text-transform:uppercase; animation: blink 1.6s steps(2) infinite; }
+.scroll-cue { position:absolute; bottom:36px; left:50%; transform:translateX(-50%); width:100%; text-align:center; font-family: var(--label); font-weight:700; font-variation-settings: 'wght' var(--wght-medium), 'wdth' 100, 'slnt' 0; font-size:12px; letter-spacing:.2em; color:var(--dim2); text-transform:uppercase; animation: blink 1.6s steps(2) infinite; }
 @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.25} }
 
 /* ═══════════════════════════════════════════
@@ -407,17 +408,28 @@ h2.head-h {
 /* ═══════════════════════════════════════════
    TABLE
 ═══════════════════════════════════════════ */
-.comp-table-wrap { border-radius:22px; overflow:hidden; border:1px solid var(--line); margin-top:30px; backdrop-filter: blur(16px); }
-.comp-table { width:100%; border-collapse:collapse; }
-.comp-table th, .comp-table td { padding:14px 16px; border:1px solid var(--line); font-size:14px; text-align:center; }
-.comp-table th { font-family: var(--head); font-size:14px; letter-spacing:.02em; text-transform:uppercase; background: var(--bg2); color:var(--dim2); }
-.comp-table th span.th-ic { display:inline-flex; align-items:center; gap:6px; }
-.comp-table th .ic { width:14px; height:14px; }
-.comp-table th:first-child, .comp-table td:first-child { text-align:left; color:var(--dim); font-weight:600; }
-.comp-table th.cyan-h { color:#000; background: var(--cyan); }
-.comp-table th.cyan-h .ic { stroke:#000; }
-.comp-table td.cyan-c { color: var(--cyan); font-weight:700; }
-.comp-table tbody tr:nth-child(even) { background: rgba(255,255,255,.025); }
+.benefit-btn-grid { display:flex; flex-wrap:wrap; gap:12px; margin-top:8px; }
+.benefit-btn {
+  display:inline-flex; align-items:center; gap:10px;
+  padding:14px 20px; border-radius:999px;
+  background: rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.18);
+  backdrop-filter: blur(16px) saturate(180%); -webkit-backdrop-filter: blur(16px) saturate(180%);
+  font-family: var(--label); font-weight:700; font-variation-settings: 'wght' var(--wght-medium), 'wdth' 100, 'slnt' 0;
+  font-size:13.5px; color:var(--dim); letter-spacing:.01em;
+  cursor:pointer; transition: transform .2s ease, border-color .2s ease, background .2s ease;
+}
+.benefit-btn .ic { width:16px; height:16px; flex-shrink:0; }
+.benefit-btn:hover { transform:translateY(-3px); border-color: rgba(255,255,255,.42); background: rgba(255,255,255,.09); }
+
+.tier-compare-row { display:flex; align-items:center; justify-content:space-between; gap:20px; padding:18px 4px; border-bottom:1px solid var(--line); }
+.tier-compare-row:first-child { border-top:1px solid var(--line); }
+.tier-compare-row.gold { background: rgba(232,185,60,.07); border-radius:14px; padding:18px 14px; margin:4px 0; }
+.tier-compare-label { display:flex; align-items:center; gap:12px; font-family:var(--head); font-size:15px; letter-spacing:.02em; text-transform:uppercase; }
+.tier-compare-label.bronze { color:var(--bronze); }
+.tier-compare-label.prata { color:var(--silver); }
+.tier-compare-label.gold { color:var(--gold); }
+.tier-compare-val { font-size:15px; color:var(--dim); text-align:right; font-family:var(--font); }
+.tier-compare-val.gold { color:var(--gold); font-weight:700; }
 
 /* ═══════════════════════════════════════════
    ONBOARDING
@@ -474,6 +486,7 @@ footer { background: var(--bg); padding:50px 80px 30px; display:flex; align-item
 ═══════════════════════════════════════════ */
 @media (max-width: 960px) {
   #nav-wrapper { top:10px; }
+  .hero-break { display:inline; }
   .nav-links { display:none; }
   .hamburger { display:flex; }
   #stage-readout { font-size:11px; padding:6px 9px }
@@ -484,8 +497,8 @@ footer { background: var(--bg); padding:50px 80px 30px; display:flex; align-item
   .txt-col, .txt-col.right, .block-left, .block-right { max-width:100%; margin-left:0; margin-right:0; }
   .grid-2, .grid-3, .tier-grid { grid-template-columns:1fr }
   .timeline { grid-template-columns:repeat(2,1fr) }
-  .comp-table { font-size:11px }
-  .comp-table th, .comp-table td { padding:8px 6px }
+  .benefit-btn-grid { gap:10px; }
+  .benefit-btn { padding:12px 16px; font-size:12.5px; }
   footer { flex-direction:column; text-align:center }
   .foot-meta { text-align:center }
   .hstat { flex-direction:column; gap:6px }
@@ -610,7 +623,7 @@ footer { background: var(--bg); padding:50px 80px 30px; display:flex; align-item
   <div class="paper-fold bl"></div>
   <div class="hero-center">
     <img src="https://res.cloudinary.com/m5pxz0b4/image/upload/Logo.png" alt="The Gamers" class="hero-logo" data-r>
-    <p class="hero-tag" data-r data-d="1">A verdadeira história por trás das telas.</p>
+    <p class="hero-tag" data-r data-d="1">A verdadeira história<br class="hero-break"> por trás das telas.</p>
     <p class="hero-sub" data-r data-d="2">PROPOSTA COMERCIAL</p>
     <p class="hero-sub2" data-r data-d="2">TEMPORADA 2026</p>
     <div class="chip-row" style="justify-content:center" data-r data-d="3">
@@ -963,30 +976,18 @@ footer { background: var(--bg); padding:50px 80px 30px; display:flex; align-item
     <div class="block-right">
       <span class="eyebrow" data-r>STAGE 09 // ANÁLISE COMPARATIVA</span>
       <h2 class="head-h" data-r data-d="1">O QUE VOCÊ <span class="shine">RECEBE</span></h2>
-      <p class="sub-line" data-r data-d="1">Por que a The Gamers entrega mais valor por real investido.</p>
+      <p class="sub-line" data-r data-d="1">Por que a The Gamers entrega mais valor por real investido. Toque em um benefício pra comparar as cotas.</p>
     </div>
-    <div class="comp-table-wrap" data-r data-d="2">
-      <table class="comp-table">
-        <thead>
-          <tr>
-            <th>Benefício</th>
-            <th><span class="th-ic"><svg class="ic" style="stroke:var(--bronze)"><use href="#ic-medal"/></svg>Bronze</span></th>
-            <th><span class="th-ic"><svg class="ic" style="stroke:var(--silver)"><use href="#ic-medal"/></svg>Prata</span></th>
-            <th class="cyan-h"><span class="th-ic"><svg class="ic"><use href="#ic-medal"/></svg>Gold</span></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td>Investimento por episódio</td><td>R$ 15k–25k</td><td>R$ 25k–35k</td><td class="cyan-c">R$ 35k–45k</td></tr>
-          <tr><td>Convites VIP (evento)</td><td>10</td><td>15</td><td class="cyan-c">30</td></tr>
-          <tr><td>Aparições no documentário</td><td>Créditos finais</td><td>Créditos + vinheta</td><td class="cyan-c">Início, créditos e vinheta</td></tr>
-          <tr><td>Collab com pro player</td><td>—</td><td>1 collab</td><td class="cyan-c">Conteúdo exclusivo</td></tr>
-          <tr><td>Ativação no evento</td><td>—</td><td>—</td><td class="cyan-c">Totem / produto / XP</td></tr>
-          <tr><td>Menção verbal no evento</td><td>—</td><td>✓</td><td class="cyan-c">✓</td></tr>
-          <tr><td>Briefing estratégico</td><td>—</td><td>—</td><td class="cyan-c">✓</td></tr>
-          <tr><td>Exclusividade por episódio</td><td>—</td><td>—</td><td class="cyan-c">✓ Exclusivo</td></tr>
-          <tr><td>Alcance potencial estimado</td><td>~80k impressões</td><td>~180k impressões</td><td class="cyan-c">~400k+ impressões</td></tr>
-        </tbody>
-      </table>
+    <div class="benefit-btn-grid" data-r data-d="2">
+      <button class="benefit-btn" data-benefit="0"><svg class="ic"><use href="#ic-chart"/></svg>Investimento por episódio</button>
+      <button class="benefit-btn" data-benefit="1"><svg class="ic"><use href="#ic-ticket"/></svg>Convites VIP (evento)</button>
+      <button class="benefit-btn" data-benefit="2"><svg class="ic"><use href="#ic-film"/></svg>Aparições no documentário</button>
+      <button class="benefit-btn" data-benefit="3"><svg class="ic"><use href="#ic-link"/></svg>Collab com pro player</button>
+      <button class="benefit-btn" data-benefit="4"><svg class="ic"><use href="#ic-star"/></svg>Ativação no evento</button>
+      <button class="benefit-btn" data-benefit="5"><svg class="ic"><use href="#ic-chat"/></svg>Menção verbal no evento</button>
+      <button class="benefit-btn" data-benefit="6"><svg class="ic"><use href="#ic-clip"/></svg>Briefing estratégico</button>
+      <button class="benefit-btn" data-benefit="7"><svg class="ic"><use href="#ic-medal"/></svg>Exclusividade por episódio</button>
+      <button class="benefit-btn" data-benefit="8"><svg class="ic"><use href="#ic-target"/></svg>Alcance potencial estimado</button>
     </div>
     <div class="callout" data-r data-d="3">
       <span class="icon-box cyan"><svg class="ic"><use href="#ic-target"/></svg></span>
@@ -994,6 +995,26 @@ footer { background: var(--bg); padding:50px 80px 30px; display:flex; align-item
     </div>
   </div>
 </section>
+
+<div class="modal-backdrop" id="comparativo-modal">
+  <div class="modal-panel">
+    <button class="modal-close" id="close-comparativo-modal">✕</button>
+    <p class="modal-title" id="comparativo-modal-title">Benefício</p>
+    <p class="modal-sub">Bronze · Prata · Gold</p>
+    <div class="tier-compare-row">
+      <span class="tier-compare-label bronze"><span class="icon-box sm" style="border-color:rgba(201,128,63,.4)"><svg class="ic" style="stroke:var(--bronze)"><use href="#ic-medal"/></svg></span>Bronze</span>
+      <span class="tier-compare-val" id="comparativo-modal-bronze"></span>
+    </div>
+    <div class="tier-compare-row">
+      <span class="tier-compare-label prata"><span class="icon-box sm" style="border-color:rgba(201,207,216,.4)"><svg class="ic" style="stroke:var(--silver)"><use href="#ic-medal"/></svg></span>Prata</span>
+      <span class="tier-compare-val" id="comparativo-modal-prata"></span>
+    </div>
+    <div class="tier-compare-row gold" style="border-bottom:none">
+      <span class="tier-compare-label gold"><span class="icon-box sm" style="border-color:rgba(232,185,60,.5)"><svg class="ic" style="stroke:var(--gold)"><use href="#ic-medal"/></svg></span>Gold</span>
+      <span class="tier-compare-val gold" id="comparativo-modal-gold"></span>
+    </div>
+  </div>
+</div>
 
 
 <!-- ⑪ ONBOARDING -->
@@ -1187,6 +1208,38 @@ openModalBtn.addEventListener('click', () => modal.classList.add('open'));
 closeModalBtn.addEventListener('click', () => modal.classList.remove('open'));
 modal.addEventListener('click', e => { if (e.target === modal) modal.classList.remove('open'); });
 document.addEventListener('keydown', e => { if (e.key === 'Escape') modal.classList.remove('open'); });
+
+// ── Modal: comparativo de benefícios (seção Análise Comparativa)
+const benefitsData = [
+  { label: 'Investimento por episódio', bronze: 'R$ 15k–25k', prata: 'R$ 25k–35k', gold: 'R$ 35k–45k' },
+  { label: 'Convites VIP (evento)', bronze: '10', prata: '15', gold: '30' },
+  { label: 'Aparições no documentário', bronze: 'Créditos finais', prata: 'Créditos + vinheta', gold: 'Início, créditos e vinheta' },
+  { label: 'Collab com pro player', bronze: '—', prata: '1 collab', gold: 'Conteúdo exclusivo' },
+  { label: 'Ativação no evento', bronze: '—', prata: '—', gold: 'Totem / produto / XP' },
+  { label: 'Menção verbal no evento', bronze: '—', prata: '✓', gold: '✓' },
+  { label: 'Briefing estratégico', bronze: '—', prata: '—', gold: '✓' },
+  { label: 'Exclusividade por episódio', bronze: '—', prata: '—', gold: '✓ Exclusivo' },
+  { label: 'Alcance potencial estimado', bronze: '~80k impressões', prata: '~180k impressões', gold: '~400k+ impressões' },
+];
+const comparativoModal = document.getElementById('comparativo-modal');
+const closeComparativoModal = document.getElementById('close-comparativo-modal');
+const comparativoTitle = document.getElementById('comparativo-modal-title');
+const comparativoBronze = document.getElementById('comparativo-modal-bronze');
+const comparativoPrata = document.getElementById('comparativo-modal-prata');
+const comparativoGold = document.getElementById('comparativo-modal-gold');
+document.querySelectorAll('.benefit-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const data = benefitsData[Number(btn.dataset.benefit)];
+    comparativoTitle.textContent = data.label;
+    comparativoBronze.textContent = data.bronze;
+    comparativoPrata.textContent = data.prata;
+    comparativoGold.textContent = data.gold;
+    comparativoModal.classList.add('open');
+  });
+});
+closeComparativoModal.addEventListener('click', () => comparativoModal.classList.remove('open'));
+comparativoModal.addEventListener('click', e => { if (e.target === comparativoModal) comparativoModal.classList.remove('open'); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') comparativoModal.classList.remove('open'); });
 </script>
 </body>
 </html>
